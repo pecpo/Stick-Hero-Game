@@ -6,13 +6,19 @@ import java.io.IOException;
 import static javafx.application.Application.launch;
 
 public class Game {
-
     public void start(Stage stage) throws IOException {
-        Player player = new Player();
-        GamePlatform gamePlatform = new GamePlatform(100, 0, 100, 0, 0);
-        Scoreboard scoreboard = new Scoreboard();
-        Stick stick = new Stick();
-        Cherry cherry = new Cherry(0);
+        try{
+            Player player = new Player();
+            GamePlatform gamePlatform = new GamePlatform(100, 0, 100, 0, 0);
+            Scoreboard scoreboard = new Scoreboard();
+            Stick stick = new Stick();
+            Cherry cherry = new Cherry(0);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+        }
+
     }
     public static void main(String[] args) {
         Application.launch(args);
