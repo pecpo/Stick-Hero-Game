@@ -27,6 +27,13 @@ public class Game extends Application {
             layout.getChildren().add(welcome);
             welcome.setLayoutX(240);
             welcome.setLayoutY(600);
+            welcome.setOnAction(e -> {
+                try {
+                    SecondScene(stage);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
             Scene scene=new Scene(layout,500,800);
             stage.setScene(scene);
             stage.show();
@@ -39,7 +46,27 @@ public class Game extends Application {
         catch (Exception e){
             e.printStackTrace();
         }
-
+    }
+    public void SecondScene(Stage stage) throws IOException {
+        try{
+            Button start =new Button("Start");
+            Button exit=new Button("Exit");
+            Image image=new Image("stick.png");
+            ImageView imageview=new ImageView(image);
+            Pane layout = new Pane();
+            layout.getChildren().add(imageview);
+            layout.getChildren().add(start);
+            start.setLayoutX(225);
+            start.setLayoutY(225);
+            layout.getChildren().add(exit);
+            exit.setLayoutX(225);
+            exit.setLayoutY(450);
+            Scene scene=new Scene(layout,500,800);
+            stage.setScene(scene);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
     public static void main(String[] args) {
         Application.launch(args);
