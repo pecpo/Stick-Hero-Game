@@ -51,7 +51,7 @@ public class Game extends Application {
         try{
             Button start =new Button("Start");
             Button exit=new Button("Exit");
-            Image image=new Image("stick.png");
+            Image image=new Image("game_bg.png");
             ImageView imageview=new ImageView(image);
             Pane layout = new Pane();
             layout.getChildren().add(imageview);
@@ -59,8 +59,8 @@ public class Game extends Application {
             start.setLayoutX(225);
             start.setLayoutY(225);
             layout.getChildren().add(exit);
-            exit.setLayoutX(225);
-            exit.setLayoutY(450);
+            exit.setLayoutX(450);
+            exit.setLayoutY(600);
             Scene scene=new Scene(layout,500,800);
             stage.setScene(scene);
         }
