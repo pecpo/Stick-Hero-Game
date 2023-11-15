@@ -2,17 +2,38 @@ package com.example.approject;
 
 public class Player {
     private double stickLength;
+    private Stick stick;
     private double positionX;
     private boolean isAlive;
     private boolean isFlipped;
 
     public Player() {
         this.stickLength = 0;
+        this.stick=null;
         this.positionX = positionX;
         this.isAlive = true;
         this.isFlipped = false;
     }
 
+    public void setStickLength(double stickLength) {
+        this.stickLength = stickLength;
+    }
+
+    public Stick getStick() {
+        return stick;
+    }
+
+    public void setStick(Stick stick) {
+        this.stick = stick;
+    }
+
+    public void setPositionX(double positionX) {
+        this.positionX = positionX;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
 
     public double getStickLength() {
         return stickLength;
