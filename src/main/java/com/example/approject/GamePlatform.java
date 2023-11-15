@@ -17,6 +17,22 @@ public class GamePlatform {
         return width;
     }
 
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public void setPerfectPoint(double perfectPoint) {
+        this.perfectPoint = perfectPoint;
+    }
+
+    public void setPositionX(double positionX) {
+        this.positionX = positionX;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
     public double getPositionX() {
         return positionX;
     }
