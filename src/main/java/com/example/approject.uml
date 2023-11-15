@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>C:/Users/Tanmay/Documents/code/java/APproject/src/main/java/com/example/approject</OriginalElement>
+  <OriginalElement />
   <nodes>
-    <node x="422.5" y="413.0">com.example.approject.Game</node>
-    <node x="-80.0" y="-14.0">com.example.approject.Player</node>
-    <node x="218.0" y="94.0">com.example.approject.Stick</node>
     <node x="408.0" y="94.0">com.example.approject.Scoreboard</node>
     <node x="621.0" y="70.0">com.example.approject.Cherry</node>
+    <node x="-80.0" y="-14.0">com.example.approject.Player</node>
+    <node x="218.0" y="94.0">com.example.approject.Stick</node>
+    <node x="422.5" y="413.0">com.example.approject.Game</node>
     <node x="849.9999999999999" y="34.0">com.example.approject.GamePlatform</node>
   </nodes>
   <notes />
@@ -37,7 +37,7 @@
       <point x="0.0" y="140.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0185597624350409" showDependencies="true" x="593.5" y="265.5" />
+  <settings layout="Hierarchic" zoom="1.0185597624350409" showDependencies="true" x="1046.599854227405" y="301.83491253644314" />
   <SelectedNodes>
     <node>com.example.approject.Game</node>
   </SelectedNodes>

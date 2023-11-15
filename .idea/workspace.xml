@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="Adding new scene">
+    <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,8 @@
       <workItem from="1699810408266" duration="376000" />
       <workItem from="1699811162105" duration="27000" />
       <workItem from="1699972640802" duration="4503000" />
-      <workItem from="1699980946619" duration="2225000" />
+      <workItem from="1699980946619" duration="2394000" />
+      <workItem from="1700064876345" duration="2653000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -148,7 +148,31 @@
       <option name="project" value="LOCAL" />
       <updated>1699983801722</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Adding new scene">
+      <option name="closed" value="true" />
+      <created>1699984218299</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1699984218299</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Adding new scene">
+      <option name="closed" value="true" />
+      <created>1700072792611</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700072792611</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Changes">
+      <option name="closed" value="true" />
+      <created>1700072871047</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1700072871047</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +224,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="Adding new scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding new scene" />
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
