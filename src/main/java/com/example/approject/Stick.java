@@ -16,7 +16,8 @@ public class Stick {
         this.length = length;
     }
 
-    public void extend() {
+    public void extend(){
+
     }
 
     public void reset() {
