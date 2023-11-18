@@ -1,8 +1,11 @@
 package com.example.approject;
 
+import java.util.Vector;
+
 public class Player {
     private double stickLength;
     private Stick stick;
+    private Vector<Cherry> cherries;
     private double positionX;
     private boolean isAlive;
     private boolean isFlipped;
@@ -10,6 +13,7 @@ public class Player {
     public Player() {
         this.stickLength = 0;
         this.stick=null;
+        this.cherries = new Vector<>();
         this.positionX = positionX;
         this.isAlive = true;
         this.isFlipped = false;
@@ -71,4 +75,14 @@ public class Player {
         isFlipped = flipped;
     }
 
+    public Vector<Cherry> getCherries() {
+        return cherries;
+    }
+
+    public void setCherries(Vector<Cherry> cherries) {
+        this.cherries = cherries;
+    }
+    public void addCherry(Cherry cherry){
+        cherries.add(cherry);
+    }
 }

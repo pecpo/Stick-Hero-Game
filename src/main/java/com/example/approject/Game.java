@@ -16,7 +16,7 @@ import static javafx.application.Application.launch;
 
 public class Game extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         try{
             stage.setTitle("Home Screen");
             Button welcome=new Button("Welcome");
@@ -63,11 +63,38 @@ public class Game extends Application {
             exit.setLayoutY(600);
             Scene scene=new Scene(layout,500,800);
             stage.setScene(scene);
+            start.setOnAction(e -> {
+                try {
+                    ThirdScene(stage);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            exit.setOnAction(e -> {
+                System.exit(0);
+            });
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
+
+    public void ThirdScene(Stage stage) throws IOException{
+        try{
+            Image image=new Image("test_run.png");
+            ImageView imageView=new ImageView(image);
+            Pane layout = new Pane();
+            layout.getChildren().add(imageView);
+            Scene scene=new Scene(layout,500,800);
+            stage.setScene(scene);
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
     public static void main(String[] args) {
         Application.launch(args);
     }
