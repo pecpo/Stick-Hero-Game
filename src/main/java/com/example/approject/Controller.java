@@ -18,6 +18,7 @@ public class Controller {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
     public void switchToScene3(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("scene3.fxml"));
