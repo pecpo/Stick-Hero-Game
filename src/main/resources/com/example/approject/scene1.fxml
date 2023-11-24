@@ -12,9 +12,9 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <AnchorPane prefHeight="844.0" prefWidth="580.0">
+      <AnchorPane prefHeight="800.0" prefWidth="500.0">
          <children>
-            <ImageView fitHeight="791.0" fitWidth="493.0" layoutX="-21.0" layoutY="-19.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="800.0" fitWidth="500.0" layoutX="-21.0" layoutY="-19.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../stick.png" />
                </image>

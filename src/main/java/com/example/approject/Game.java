@@ -2,27 +2,24 @@ package com.example.approject;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.BorderPane;
-import static javafx.application.Application.launch;
 
 public class Game extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("scene1.fxml")));
             Scene scene1 = new Scene(root);
             stage.setScene(scene1);
+            stage.setResizable(false);
+            stage.setTitle("Stick Hero");
+            Image icon = new Image("TCS_Bhediya.png");
+            stage.getIcons().add(icon);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
