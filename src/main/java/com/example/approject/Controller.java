@@ -24,14 +24,14 @@ public class Controller {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    double left=0;
+    private static double left=0;
 
-    public double getLeft() {
+    public static double getLeft() {
         return left;
     }
 
-    public void setLeft(double left) {
-        this.left = left;
+    public static void setLeft(double lefts) {
+        left = lefts;
     }
 
     public static int getFirst() {
@@ -50,15 +50,14 @@ public class Controller {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
     public void switchToScene3(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("scene3.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         root = loader.load();
         AnchorPane pillarPane = (AnchorPane) loader.getNamespace().get("myPane");
-        left=GamePlatform.generate(pillarPane,left);
-        left=GamePlatform.generate(pillarPane,left);
+        GamePlatform.generate(pillarPane);
+        GamePlatform.generate(pillarPane);
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pillarPane);
         scrollPane.setPrefSize(400, 800);
