@@ -7,7 +7,17 @@ import javafx.scene.shape.Rectangle;
 import java.util.Random;
 
 public class GamePlatform {
-    private double width;
+    private static double width;
+
+    public static double getHeight() {
+        return height;
+    }
+
+    public static void setHeight(double heights) {
+        height = heights;
+    }
+
+    private static double height;
     private double perfectPoint;
     private double positionX;
     private boolean isVisible;
@@ -19,12 +29,12 @@ public class GamePlatform {
         this.isVisible = true;
     }
 
-    public double getWidth() {
+    public static double getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
-        this.width = width;
+    public static void setWidth(double widths) {
+        width = widths;
     }
 
     public void setPerfectPoint(double perfectPoint) {
@@ -44,6 +54,8 @@ public class GamePlatform {
             double left=Controller.getLeft();
             double width = random.nextDouble() * 50 + 30; // Random width between 50 and 150
             double height = random.nextDouble() * 300 + 100; // Random height between 100 and 400
+            GamePlatform.setHeight(height);
+            GamePlatform.setWidth(width);
             left+= random.nextDouble()*50+0;
             Rectangle platform = new Rectangle(width, height);
             platform.setFill(Color.BLACK);
@@ -58,6 +70,8 @@ public class GamePlatform {
         left+= random.nextDouble()*290+60;
         double width = random.nextDouble() * 50 + 30; // Random width between 50 and 150
         double height = random.nextDouble() * 300 + 100; // Random height between 100 and 400
+        GamePlatform.setHeight(height);
+        GamePlatform.setWidth(width);
         Rectangle platform = new Rectangle(width, height);
         platform.setFill(Color.BLACK);
         AnchorPane.setLeftAnchor(platform, left);

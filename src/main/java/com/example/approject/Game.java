@@ -13,6 +13,11 @@ public class Game extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
+            Player player = new Player();
+            GamePlatform gamePlatform = new GamePlatform(100, 0, 100, 0, 0);
+            Scoreboard scoreboard = new Scoreboard();
+            Stick stick = new Stick();
+            Cherry cherry = new Cherry(0);
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("scene1.fxml")));
             Scene scene1 = new Scene(root);
             stage.setScene(scene1);
@@ -24,11 +29,6 @@ public class Game extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Player player = new Player();
-        GamePlatform gamePlatform = new GamePlatform(100, 0, 100, 0, 0);
-        Scoreboard scoreboard = new Scoreboard();
-        Stick stick = new Stick();
-        Cherry cherry = new Cherry(0);
     }
     public static void main(String[] args) {
         Application.launch(args);

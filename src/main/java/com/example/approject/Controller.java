@@ -1,7 +1,4 @@
 package com.example.approject;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,16 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.util.Duration;
-
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Random;
 
 public class Controller {
     private Stage stage;
@@ -51,18 +43,28 @@ public class Controller {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
     public void switchToScene3(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("scene3.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         root = loader.load();
         AnchorPane pillarPane = (AnchorPane) loader.getNamespace().get("myPane");
         GamePlatform.generate(pillarPane);
+        Stick stick = new Stick();
+        Line line = stick.getStickLine();
+        line.setStartX(Controller.getLeft()+GamePlatform.getWidth());
+        line.setStartY(800-GamePlatform.getHeight());
+        line.setEndX(Controller.getLeft()+GamePlatform.getWidth());
+        line.setEndY(800-GamePlatform.getHeight());
+        pillarPane.getChildren().add(line);
         GamePlatform.generate(pillarPane);
+        pillarPane.setOnMousePressed(event1 -> stick.extend());
+        pillarPane.setOnMouseReleased(event1 -> stick.reset());
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pillarPane);
-        scrollPane.setPrefSize(400, 800);
+        scrollPane.setPrefSize(500, 800);
         Scene mainScene = new Scene(scrollPane, 500, 800);
-        stage.setTitle("Partial Scene View Example");
+        stage.setTitle("Actual Game");
         stage.setScene(mainScene);
         stage.show();
 
