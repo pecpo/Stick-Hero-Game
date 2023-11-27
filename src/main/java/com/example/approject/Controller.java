@@ -1,14 +1,18 @@
 package com.example.approject;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.util.Duration;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -17,6 +21,16 @@ public class Controller {
     private Scene scene;
     private Parent root;
     private static double left=0;
+
+    public static boolean isIsSpacePressed() {
+        return isSpacePressed;
+    }
+
+    public static void setIsSpacePressed(boolean isSpacePressed) {
+        Controller.isSpacePressed = isSpacePressed;
+    }
+
+    private static boolean isSpacePressed=false;
 
     public static double getLeft() {
         return left;
@@ -50,16 +64,25 @@ public class Controller {
         root = loader.load();
         AnchorPane pillarPane = (AnchorPane) loader.getNamespace().get("myPane");
         GamePlatform.generate(pillarPane);
+        Image image = new Image("character.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setPreserveRatio(true);
+        imageView.setFitHeight(15);
+        imageView.setFitWidth(15);
+        imageView.setX(0);
+        imageView.setY(485);
+        pillarPane.getChildren().add(imageView);
         Stick stick = new Stick();
         Line line = stick.getStickLine();
         line.setStartX(Controller.getLeft()+GamePlatform.getWidth());
-        line.setStartY(800-GamePlatform.getHeight());
+        line.setStartY(500);
         line.setEndX(Controller.getLeft()+GamePlatform.getWidth());
-        line.setEndY(800-GamePlatform.getHeight());
+        line.setEndY(500);
+//        pillarPane.setOnKeyPressed(stick::extend);
+//        pillarPane.setOnKeyReleased(stick::reset);
         pillarPane.getChildren().add(line);
         GamePlatform.generate(pillarPane);
-        pillarPane.setOnMousePressed(event1 -> stick.extend());
-        pillarPane.setOnMouseReleased(event1 -> stick.reset());
+        Player.moveForward(imageView);
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pillarPane);
         scrollPane.setPrefSize(500, 800);
@@ -68,16 +91,6 @@ public class Controller {
         stage.setScene(mainScene);
         stage.show();
 
-        // Set up a timeline to automatically scroll the ScrollPane
-//        Timeline timeline = new Timeline(
-//                new KeyFrame(Duration.seconds(3), even -> {
-//                    double newHValue = Math.min(scrollPane.getHvalue() + 0.25, 1.0);
-//                    scrollPane.setHvalue(newHValue);
-//                })
-//
-//        );
-//        timeline.setCycleCount(Timeline.INDEFINITE);
-//        timeline.play();
     }
     public void exit(){
         System.exit(0);

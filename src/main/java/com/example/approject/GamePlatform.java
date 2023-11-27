@@ -8,19 +8,19 @@ import java.util.Random;
 
 public class GamePlatform {
     private static double width;
-
-    public static double getHeight() {
-        return height;
-    }
-
-    public static void setHeight(double heights) {
-        height = heights;
-    }
-
-    private static double height;
     private double perfectPoint;
     private double positionX;
     private boolean isVisible;
+
+    public static double getDistanceX() {
+        return distanceX;
+    }
+
+    public static void setDistanceX(double distance) {
+        GamePlatform.distanceX = distance;
+    }
+
+    private static double distanceX;
 
     public GamePlatform(double width, double perfectPoint, double height, double positionX, double positionY) {
         this.width = width;
@@ -52,32 +52,27 @@ public class GamePlatform {
         Random random = new Random();
         if(Controller.getFirst()==1){
             double left=Controller.getLeft();
-            double width = random.nextDouble() * 50 + 30; // Random width between 50 and 150
-            double height = random.nextDouble() * 300 + 100; // Random height between 100 and 400
-            GamePlatform.setHeight(height);
+            double width = 30;
             GamePlatform.setWidth(width);
-            left+= random.nextDouble()*50+0;
-            Rectangle platform = new Rectangle(width, height);
+            Rectangle platform = new Rectangle(width, 300);
             platform.setFill(Color.BLACK);
-            AnchorPane.setLeftAnchor(platform, left);
+            AnchorPane.setLeftAnchor(platform, 0.0);
             AnchorPane.setBottomAnchor(platform, 0.0);
             anchorPane.getChildren().add(platform);
             Controller.setFirst(0);
-            Controller.setLeft(left);
             return;
         }
         double left=Controller.getLeft();
-        left+= random.nextDouble()*290+60;
-        double width = random.nextDouble() * 50 + 30; // Random width between 50 and 150
-        double height = random.nextDouble() * 300 + 100; // Random height between 100 and 400
-        GamePlatform.setHeight(height);
+        left+= random.nextDouble() * 290 + 60;
+        double width = random.nextDouble() * 50 + 30;
         GamePlatform.setWidth(width);
-        Rectangle platform = new Rectangle(width, height);
+        Rectangle platform = new Rectangle(width, 300);
         platform.setFill(Color.BLACK);
         AnchorPane.setLeftAnchor(platform, left);
         AnchorPane.setBottomAnchor(platform, 0.0);
         anchorPane.getChildren().add(platform);
         Controller.setLeft(left);
+        GamePlatform.setDistanceX(left);
     }
     public double getPositionX() {
         return positionX;

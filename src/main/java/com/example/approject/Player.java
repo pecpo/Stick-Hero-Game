@@ -1,5 +1,9 @@
 package com.example.approject;
 
+import javafx.animation.TranslateTransition;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+
 import java.util.Vector;
 
 public class Player {
@@ -55,8 +59,10 @@ public class Player {
 
     }
 
-    public void moveForward() {
-
+    public static void moveForward(ImageView imageView){
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(1), imageView);
+        transition.setToX(imageView.getTranslateX() + GamePlatform.getDistanceX());
+        transition.play();
     }
 
     public boolean isStickLengthMatch(double gapWidth) {
