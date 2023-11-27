@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Objects;
 import javafx.scene.Scene;
 
-public class Game extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {

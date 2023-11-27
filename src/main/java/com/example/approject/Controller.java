@@ -1,4 +1,5 @@
 package com.example.approject;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +11,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.util.Duration;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -59,19 +63,30 @@ public class Controller {
         Button flipButton = new Button("Flip Image");
         flipButton.setOnAction(even -> Player.setFlipped(imageView));
         pillarPane.getChildren().add(flipButton);
-        for(int i=0;i<5;i++){
+        for(int i=0;i<2;i++){
+            double prev_left=Controller.getLeft();
             GamePlatform.generate(pillarPane);
-            Player.moveForward(imageView);
+            Cherry.initialize(pillarPane,prev_left+70);
+            Scale scale = new Scale(1, 1);
+            scale.setPivotY(500);
+            imageView.getTransforms().add(scale);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(5), imageView);
+            transition.setToX(imageView.getTranslateX() + GamePlatform.getDistanceX());
+            flipButton.setOnAction(event1 -> {
+                transition.play();
+                scale.setY(-scale.getY());
+            });
+            transition.play();
             ScrollPane scrollPane = new ScrollPane();
             scrollPane.setContent(pillarPane);
             scrollPane.setPrefSize(500, 800);
+//            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
             mainScene = new Scene(scrollPane, 500, 800);
         }
         stage.setTitle("Actual Game");
         stage.setScene(mainScene);
         stage.show();
-////        pillarPane.setOnKeyPressed(stick::extend);
-////        pillarPane.setOnKeyReleased(stick::reset);
     }
     public void exit(){
         System.exit(0);

@@ -4,6 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import javafx.scene.transform.Scale;
+import javafx.scene.transform.Rotate;
 
 import java.util.Vector;
 
@@ -61,9 +62,7 @@ public class Player {
     }
 
     public static void moveForward(ImageView imageView){
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(5), imageView);
-        transition.setToX(imageView.getTranslateX() + GamePlatform.getDistanceX());
-        transition.play();
+
     }
     public static void initialize(ImageView imageView){
         imageView.setFitHeight(15);
@@ -85,12 +84,10 @@ public class Player {
 
     public static void setFlipped(ImageView imageView){
         Scale scale = new Scale();
-//        scale.setPivotX(imageView.getBoundsInLocal().getWidth() / 2);
-//        scale.setPivotY(imageView.getBoundsInLocal().getHeight() / 2);
         if (isFlipped) {
             scale.setY(1);
         } else {
-            scale.setY(-1);
+            scale.setY(0.9);
         }
         imageView.getTransforms().setAll(scale);
         isFlipped = !isFlipped;
