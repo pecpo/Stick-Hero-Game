@@ -66,7 +66,7 @@ public class Controller {
         for(int i=0;i<2;i++){
             double prev_left=Controller.getLeft();
             GamePlatform.generate(pillarPane);
-            Cherry.initialize(pillarPane,prev_left+70);
+            Cherry.initialize(pillarPane,prev_left);
             Scale scale = new Scale(1, 1);
             scale.setPivotY(500);
             imageView.getTransforms().add(scale);

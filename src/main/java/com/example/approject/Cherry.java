@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.Random;
+
 public class Cherry {
 
     private double positionX;
@@ -18,7 +20,8 @@ public class Cherry {
         ImageView imageView1 = new ImageView(image1);
         imageView1.setFitHeight(15);
         imageView1.setFitWidth(15);
-        imageView1.setX(left);
+        double x=left+((Controller.getLeft()-left)*(0.5));
+        imageView1.setX(x);
         imageView1.setY(500);
         pillarPane.getChildren().add(imageView1);
     }

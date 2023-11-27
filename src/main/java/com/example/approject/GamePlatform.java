@@ -63,7 +63,7 @@ public class GamePlatform {
             return;
         }
         double left=Controller.getLeft();
-        left+= random.nextDouble() * 290 + 60;
+        left+= random.nextDouble() * 290 + 100;
         double width = random.nextDouble() * 50 + 30;
         GamePlatform.setWidth(width);
         Rectangle platform = new Rectangle(width, 300);
