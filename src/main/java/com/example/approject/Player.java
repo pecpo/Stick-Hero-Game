@@ -60,11 +60,17 @@ public class Player {
     }
 
     public static void moveForward(ImageView imageView){
-        TranslateTransition transition = new TranslateTransition(Duration.seconds(1), imageView);
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(5), imageView);
         transition.setToX(imageView.getTranslateX() + GamePlatform.getDistanceX());
         transition.play();
     }
-
+    public static void initialize(ImageView imageView){
+        imageView.setPreserveRatio(true);
+        imageView.setFitHeight(15);
+        imageView.setFitWidth(15);
+        imageView.setX(0);
+        imageView.setY(485);
+    }
     public boolean isStickLengthMatch(double gapWidth) {
         return stickLength >= gapWidth;
     }

@@ -66,23 +66,18 @@ public class Controller {
         GamePlatform.generate(pillarPane);
         Image image = new Image("character.png");
         ImageView imageView = new ImageView(image);
-        imageView.setPreserveRatio(true);
-        imageView.setFitHeight(15);
-        imageView.setFitWidth(15);
-        imageView.setX(0);
-        imageView.setY(485);
+        Player.initialize(imageView);
         pillarPane.getChildren().add(imageView);
-        Stick stick = new Stick();
-        Line line = stick.getStickLine();
-        line.setStartX(Controller.getLeft()+GamePlatform.getWidth());
-        line.setStartY(500);
-        line.setEndX(Controller.getLeft()+GamePlatform.getWidth());
-        line.setEndY(500);
-//        pillarPane.setOnKeyPressed(stick::extend);
-//        pillarPane.setOnKeyReleased(stick::reset);
-        pillarPane.getChildren().add(line);
-        GamePlatform.generate(pillarPane);
-        Player.moveForward(imageView);
+        for(int i=0;i<2;i++){
+            GamePlatform.generate(pillarPane);
+            Player.moveForward(imageView);
+        }
+//        Stick stick = new Stick();
+//        Line line = stick.getStickLine();
+//        stick.initialize(line);
+////        pillarPane.setOnKeyPressed(stick::extend);
+////        pillarPane.setOnKeyReleased(stick::reset);
+//        pillarPane.getChildren().add(line);
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pillarPane);
         scrollPane.setPrefSize(500, 800);
@@ -90,10 +85,8 @@ public class Controller {
         stage.setTitle("Actual Game");
         stage.setScene(mainScene);
         stage.show();
-
     }
     public void exit(){
         System.exit(0);
     }
 }
-
