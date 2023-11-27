@@ -25,10 +25,10 @@ public class Stick {
         StickLine.setStroke(Color.BLACK);
     }
     public void initialize(Line line){
-        line.setStartX(Controller.getLeft()+GamePlatform.getWidth());
+        line.setStartX(15);
         line.setStartY(500);
-        line.setEndX(Controller.getLeft()+GamePlatform.getWidth());
-        line.setEndY(500);
+        line.setEndX(15);
+        line.setEndY(550);
     }
     public double getLength() {
         return length;

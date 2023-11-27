@@ -3,6 +3,7 @@ package com.example.approject;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
+import javafx.scene.transform.Scale;
 
 import java.util.Vector;
 
@@ -12,7 +13,7 @@ public class Player {
     private Vector<Cherry> cherries;
     private double positionX;
     private boolean isAlive;
-    private boolean isFlipped;
+    private static boolean isFlipped;
 
     public Player() {
         this.stickLength = 0;
@@ -65,7 +66,6 @@ public class Player {
         transition.play();
     }
     public static void initialize(ImageView imageView){
-        imageView.setPreserveRatio(true);
         imageView.setFitHeight(15);
         imageView.setFitWidth(15);
         imageView.setX(0);
@@ -83,8 +83,17 @@ public class Player {
         return isFlipped;
     }
 
-    public void setFlipped(boolean flipped) {
-        isFlipped = flipped;
+    public static void setFlipped(ImageView imageView){
+        Scale scale = new Scale();
+//        scale.setPivotX(imageView.getBoundsInLocal().getWidth() / 2);
+//        scale.setPivotY(imageView.getBoundsInLocal().getHeight() / 2);
+        if (isFlipped) {
+            scale.setY(1);
+        } else {
+            scale.setY(-1);
+        }
+        imageView.getTransforms().setAll(scale);
+        isFlipped = !isFlipped;
     }
 
     public Vector<Cherry> getCherries() {
