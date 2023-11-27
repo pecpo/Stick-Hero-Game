@@ -39,18 +39,18 @@ public class Stick {
     }
 
     public void extend(KeyEvent event){
-        while(event.getCode()== KeyCode.SPACE){
-            Controller.setIsSpacePressed(true);
-            StickLine.setEndY(StickLine.getEndY()+100);
-            length+=1;
-        }
+//        while(event.getCode()== KeyCode.SPACE){
+//            Controller.setIsSpacePressed(true);
+//            StickLine.setEndY(StickLine.getEndY()+100);
+//            length+=1;
+//        }
     }
 
     public void reset(KeyEvent event){
-        if(event.getCode()== KeyCode.SPACE){
-            Controller.setIsSpacePressed(false);
-            GamePlatform.setDistanceX(length);
-            length=0;
-        }
+//        if(event.getCode()== KeyCode.SPACE){
+//            Controller.setIsSpacePressed(false);
+//            GamePlatform.setDistanceX(length);
+//            length=0;
+//        }
     }
 }
