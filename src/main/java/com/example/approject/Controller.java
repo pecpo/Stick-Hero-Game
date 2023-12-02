@@ -1,8 +1,11 @@
 package com.example.approject;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -10,7 +13,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -60,23 +65,11 @@ public class Controller {
         stick.initialize(line);
         pillarPane.getChildren().add(line);
         Scene mainScene = null;
-        Button flipButton = new Button("Flip Image");
-        flipButton.setOnAction(even -> Player.setFlipped(imageView));
-        pillarPane.getChildren().add(flipButton);
         for(int i=0;i<2;i++){
             double prev_left=Controller.getLeft();
             GamePlatform.generate(pillarPane);
-            Cherry.initialize(pillarPane,prev_left);
-            Scale scale = new Scale(1, 1);
-            scale.setPivotY(500);
-            imageView.getTransforms().add(scale);
-            TranslateTransition transition = new TranslateTransition(Duration.seconds(5), imageView);
-            transition.setToX(imageView.getTranslateX() + GamePlatform.getDistanceX());
-            flipButton.setOnAction(event1 -> {
-                transition.play();
-                scale.setY(-scale.getY());
-            });
-            transition.play();
+            ImageView cherry=Cherry.initialize(pillarPane,prev_left);
+            Player.moveForward(imageView,cherry,pillarPane);
             ScrollPane scrollPane = new ScrollPane();
             scrollPane.setContent(pillarPane);
             scrollPane.setPrefSize(500, 800);
@@ -90,5 +83,13 @@ public class Controller {
     }
     public void exit(){
         System.exit(0);
+    }
+    public static void intersect(ImageView cherry, ImageView player){
+        Bounds cherrys=cherry.localToScene(cherry.getBoundsInLocal());
+        Bounds players=player.localToScene(player.getBoundsInLocal());
+        if(cherrys.intersects(players)){
+            System.out.println("Intersected");
+            cherry.setVisible(false);
+        }
     }
 }

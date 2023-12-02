@@ -1,7 +1,13 @@
 package com.example.approject;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.scene.transform.Scale;
 import javafx.scene.transform.Rotate;
@@ -61,8 +67,33 @@ public class Player {
 
     }
 
-    public static void moveForward(ImageView imageView){
-
+    public static void moveForward(ImageView imageView, ImageView imageView1, AnchorPane pillarPane){
+        Rectangle fixedBounds = new Rectangle();
+        fixedBounds.setWidth(15);
+        fixedBounds.setHeight(15);
+        fixedBounds.setFill(Color.TRANSPARENT);
+        Rectangle movingBounds = new Rectangle();
+        movingBounds.setWidth(15);
+        movingBounds.setHeight(15);
+        movingBounds.setFill(Color.TRANSPARENT);
+        pillarPane.getChildren().addAll(fixedBounds, movingBounds);
+        Button flipButton = new Button("Flip Image");
+        flipButton.setOnAction(even -> Player.setFlipped(imageView));
+        pillarPane.getChildren().add(flipButton);
+        Scale scale = new Scale(1, 1);
+        scale.setPivotY(500);
+        imageView.getTransforms().add(scale);
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(5), imageView);
+        transition.setToX(imageView.getTranslateX() + GamePlatform.getDistanceX());
+        flipButton.setOnAction(event1 -> {
+            transition.play();
+            scale.setY(-scale.getY());
+        });
+        transition.play();
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(1), even -> Controller.intersect(imageView,imageView1)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        transition.setOnFinished(even -> timeline.stop());
     }
     public static void initialize(ImageView imageView){
         imageView.setFitHeight(15);

@@ -15,7 +15,7 @@ public class Cherry {
         this.positionX = positionX;
     }
 
-    public static void initialize(AnchorPane pillarPane,double left) {
+    public static ImageView initialize(AnchorPane pillarPane,double left) {
         Image image1 = new Image("cherry.png");
         ImageView imageView1 = new ImageView(image1);
         imageView1.setFitHeight(15);
@@ -24,6 +24,7 @@ public class Cherry {
         imageView1.setX(x);
         imageView1.setY(500);
         pillarPane.getChildren().add(imageView1);
+        return imageView1;
     }
 
     public double getPositionX() {
