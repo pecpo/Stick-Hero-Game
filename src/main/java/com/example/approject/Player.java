@@ -1,16 +1,13 @@
 package com.example.approject;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.scene.transform.Scale;
-import javafx.scene.transform.Rotate;
 
 import java.util.Vector;
 
@@ -22,6 +19,14 @@ public class Player {
     private boolean isAlive;
     private static boolean isFlipped;
 
+    private static Player player=null;
+
+    private static Player getPlayer(){
+        if(player==null){
+            player=new Player();
+        }
+        return player;
+    }
     public Player() {
         this.stickLength = 0;
         this.stick=null;
@@ -77,29 +82,20 @@ public class Player {
         movingBounds.setHeight(15);
         movingBounds.setFill(Color.TRANSPARENT);
         pillarPane.getChildren().addAll(fixedBounds, movingBounds);
-        Button flipButton = new Button("Flip Image");
-        flipButton.setOnAction(even -> Player.setFlipped(imageView));
-        pillarPane.getChildren().add(flipButton);
-        Scale scale = new Scale(1, 1);
-        scale.setPivotY(500);
-        imageView.getTransforms().add(scale);
         TranslateTransition transition = new TranslateTransition(Duration.seconds(5), imageView);
         transition.setToX(imageView.getTranslateX() + GamePlatform.getDistanceX());
-        flipButton.setOnAction(event1 -> {
-            transition.play();
-            scale.setY(-scale.getY());
-        });
+
         transition.play();
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(1), even -> Controller.intersect(imageView,imageView1)));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        transition.setOnFinished(even -> timeline.stop());
+
     }
-    public static void initialize(ImageView imageView){
+    public static ImageView initialize(){
+        Image image = new Image("character.png");
+        ImageView imageView = new ImageView(image);
         imageView.setFitHeight(15);
         imageView.setFitWidth(15);
         imageView.setX(0);
         imageView.setY(485);
+        return imageView;
     }
     public boolean isStickLengthMatch(double gapWidth) {
         return stickLength >= gapWidth;
@@ -114,14 +110,18 @@ public class Player {
     }
 
     public static void setFlipped(ImageView imageView){
-        Scale scale = new Scale();
-        if (isFlipped) {
-            scale.setY(1);
-        } else {
-            scale.setY(0.9);
-        }
-        imageView.getTransforms().setAll(scale);
+//        Scale scale = new Scale();
+//        if (isFlipped) {
+//            scale.setY(1);
+//        } else {
+//            scale.setY(0.9);
+//        }
+//        imageView.getTransforms().setAll(scale);
+        Scale scale=new Scale();
+        scale.setY(-scale.getY());
         isFlipped = !isFlipped;
+        scale.setPivotY(500);
+        imageView.getTransforms().add(scale);
     }
 
     public Vector<Cherry> getCherries() {

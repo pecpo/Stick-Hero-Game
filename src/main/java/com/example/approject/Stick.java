@@ -8,21 +8,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class Stick {
-    private static double length;
-    private static double initial;
+    Rectangle stickRectangle = new Rectangle();
+    public int initial;
 
-    public Line getStickLine() {
-        return StickLine;
-    }
-
-    private final Line StickLine=new Line(0,0,0,0);
     public Stick() {
-        length = 0;
-        initial =0;
-        StickLine.setStroke(Color.BLACK);
+        stickRectangle.setHeight(200);
+        stickRectangle.setY(500);
+        stickRectangle.setWidth(10);
+        stickRectangle.setFill(Color.BLACK);
     }
     public void initialize(Line line){
         line.setStartX(15);
@@ -30,13 +27,13 @@ public class Stick {
         line.setEndX(15);
         line.setEndY(550);
     }
-    public double getLength() {
-        return length;
-    }
-
-    public void setLength(double lengths) {
-        length = lengths;
-    }
+//    public double getLength() {
+//        return length;
+//    }
+//
+//    public void setLength(double lengths) {
+//        length = lengths;
+//    }
 
     public void extend(KeyEvent event){
 //        while(event.getCode()== KeyCode.SPACE){

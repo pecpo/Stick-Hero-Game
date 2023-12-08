@@ -1,0 +1,292 @@
+package com.example.approject;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Scale;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
+import java.util.Random;
+
+public class Game extends Application {
+
+    private AnchorPane mainPane;
+    private Scene mainScene;
+    Stage stage = new Stage();
+    private Timeline sh=null;
+    private Timeline sy=null;
+    private Rectangle platformCurrent=null;
+    private Rectangle platformNext=null;
+    private Rectangle stick;
+    private ImageView player;
+    private static boolean isFlipped=false;
+    private static boolean isStill=true;
+    private static boolean isRotated=false;
+    private boolean isAlive=true;
+    private int currentScore=0;
+    private int highScore=0;
+    private int cherryCount=0;
+    private double dist;
+    Random random = new Random();
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        mainPane=setup();
+        mainScene = new Scene(mainPane, 500, 800);
+
+        mainScene.setOnKeyPressed(event -> {
+            System.out.println("flip");
+            setFlipped(player);
+        });
+
+        mainScene.setOnMousePressed(this::handleMousePress);
+
+        mainScene.setOnMouseReleased(this::handleMouseReleased);
+//        mainScene.setOnKeyReleased(event -> {
+//            System.out.println("release");
+//            handleKeyReleased(event);
+//        });
+
+        stage.setScene(mainScene);
+        stage.setResizable(false);
+        stage.setTitle("Stick Hero");
+        stage.setScene(mainScene);
+        stage.show();
+    }
+
+    private void handleMousePress(MouseEvent event) {
+        System.out.println("press");
+        if (isRotated){
+            return;
+        }
+        isStill=false;
+        sh = new Timeline(
+                new KeyFrame(Duration.seconds(2), new KeyValue(stick.heightProperty(), 510))
+        );
+
+        sh.play();
+        sy = new Timeline(
+                new KeyFrame(Duration.seconds(2), new KeyValue(stick.yProperty(), -510))
+        );
+        sy.play();
+        isRotated = false;
+    }
+
+    private void handleMouseReleased(MouseEvent event) {
+        if (sh != null && sy != null) {
+            sh.stop();
+            sy.stop();
+        }
+
+        if(!isRotated) {
+            Rotate rotateTransition = new Rotate();
+            rotateTransition.setAngle(90);
+            rotateTransition.setPivotX(stick.getX());
+            rotateTransition.setPivotY(0);
+            rotateTransition.setAxis(Rotate.Z_AXIS);
+            stick.getTransforms().add(rotateTransition);
+            isRotated = true;
+        }
+
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), player);
+        translateTransition.setByX(stick.getHeight() + 15);
+        translateTransition.play();
+
+        translateTransition.setOnFinished(event1 -> {
+            isStill=true;
+            if (isAlive && stick.getHeight() < platformNext.getX() - platformCurrent.getX() -
+                    platformCurrent.getWidth() || stick.getHeight()>platformNext.getX()+platformNext.getWidth() -
+                    platformCurrent.getX() - platformCurrent.getWidth()){
+                try {
+                    isAlive=false;
+                    gameOver();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else{
+                gameContinue();
+            }
+        });
+
+    }
+
+    private void gameContinue() {
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), player);
+        TranslateTransition translateTransition2 = new TranslateTransition(Duration.seconds(2), platformCurrent);
+        TranslateTransition translateTransition3 = new TranslateTransition(Duration.seconds(2), platformNext);
+        TranslateTransition translateTransition4 = new TranslateTransition(Duration.seconds(2), stick);
+
+        translateTransition.setByX(-dist-platformCurrent.getWidth());
+        translateTransition2.setByX(-dist-platformCurrent.getWidth());
+        translateTransition3.setByX(-dist-platformCurrent.getWidth());
+        translateTransition4.setByX(-dist-platformCurrent.getWidth());
+
+        translateTransition.play();
+        translateTransition2.play();
+        translateTransition3.play();
+        translateTransition4.play();
+
+        checkCollisions();
+
+        translateTransition4.setOnFinished(event -> {
+
+//            System.out.println(platformNext.getWidth());
+//            mainPane.getChildren().remove(platformCurrent);
+//            mainPane.getChildren().remove(platformNext);
+//            mainPane.getChildren().remove(stick);
+//            platformCurrent=new Rectangle(platformCurrent.getX(), platformNext.getY(), platformNext.getWidth(), platformNext.getHeight());
+//            platformNext=randomRectangle();
+//            dist = random.nextInt(100)+50;
+//            platformNext.setX(platformCurrent.getX()+platformCurrent.getWidth()+dist);
+//            mainPane.getChildren().add(platformNext);
+//            System.out.println(platformCurrent.getWidth());
+//            player.setX(platformCurrent.getX());
+//            stick = new Rectangle(0,10, Color.BLUE);
+//            stick.setWidth(10);
+//            stick.setTranslateX(platformCurrent.getX() );
+//            stick.setTranslateY(player.getY() + player.getFitHeight());
+//            mainPane.getChildren().add(stick);
+            if(!isAlive){
+                return;
+            }
+            mainPane=setup();
+            mainScene=reScene();
+            stage.setScene(mainScene);
+            stage.show();
+        });
+
+    }
+
+
+    private void gameOver() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("died.fxml"));
+        Parent root= loader.load();
+        mainScene = new Scene(root);
+        stage.setScene(mainScene);
+        stage.show();
+    }
+
+    public AnchorPane setup() {
+        AnchorPane mainPane = new AnchorPane();
+        mainPane.setPrefSize(500, 800);
+        platformCurrent = randomRectangle();
+        if(platformNext==null){
+            platformCurrent= randomRectangle();
+        }
+        else {
+            platformCurrent = new Rectangle(platformCurrent.getX(), platformNext.getY(), platformNext.getWidth(), platformNext.getHeight());
+        }
+        platformNext = randomRectangle();
+        int distance = random.nextInt(100)+50;
+        platformNext.setX(platformCurrent.getX()+platformCurrent.getWidth()+distance);
+        stick = new Rectangle(0,10, Color.BLUE);
+        stick.setWidth(10);
+        player = new ImageView("character.png");
+        player.setFitHeight(40);
+        player.setFitWidth(40);
+        player.setX(platformCurrent.getX() + platformCurrent.getWidth() - player.getFitWidth());
+        dist=distance;
+        stick.setTranslateX(player.getX() + player.getFitWidth());
+        player.setY(platformCurrent.getY() - player.getFitHeight());
+        stick.setTranslateY(player.getY() + player.getFitHeight());
+        mainPane.getChildren().addAll(platformCurrent, platformNext, stick, player);
+//        mainPane.getChildren().addAll(player);
+        mainPane.setStyle("-fx-background-color: #FFFFFF;");
+        isFlipped=false;
+        isStill=true;
+        isRotated=false;
+        return mainPane;
+    }
+
+    public Rectangle randomRectangle(){
+        int width = random.nextInt(100)+100;
+        int x = random.nextInt(50);
+        Rectangle rectangle = new Rectangle(x, 600, width, 200);
+        return rectangle;
+    }
+
+    public Scene reScene(){
+        mainScene= new Scene(mainPane, 500, 800);
+        mainScene.setOnKeyPressed(event -> {
+            System.out.println("flip");
+            setFlipped(player);
+        });
+
+        mainScene.setOnMousePressed(this::handleMousePress);
+
+        mainScene.setOnMouseReleased(this::handleMouseReleased);
+        return mainScene;
+    }
+
+    public static void setFlipped(ImageView imageView){
+        if(isStill){
+            return;
+        }
+        if(isFlipped){
+            imageView.setRotate(0);
+            imageView.setScaleX(-imageView.getScaleX());
+            imageView.setTranslateY(imageView.getTranslateY()-40);
+        }
+        else {
+            imageView.setRotate(180);
+            imageView.setScaleX(-imageView.getScaleX());
+            imageView.setTranslateY(imageView.getTranslateY()+40);
+        }
+
+        isFlipped = !isFlipped;
+
+    }
+
+    private void checkCollisions() {
+        // Use a Timeline or AnimationTimer to continuously check for collisions
+        // For simplicity, a basic AnimationTimer is used in this example
+
+        javafx.animation.AnimationTimer timer = new javafx.animation.AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                // Check if bounding boxes intersect
+                if (player.getBoundsInParent().intersects(platformNext.getBoundsInParent()) && isFlipped) {
+                    if(!isAlive){
+                       return;
+                    }
+                    System.out.println("Collision detected!");
+                    isAlive = false;
+                    try {
+                        gameOver();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+//                    gameOver();
+                    // Handle collision logic here
+                }
+            }
+        };
+
+        // Start the AnimationTimer
+        timer.start();
+    }
+
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+}

@@ -8,17 +8,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.scene.Scene;
+import  java.io.*;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            Player player = new Player();
-            GamePlatform gamePlatform = new GamePlatform(100, 0, 100, 0, 0);
-            Scoreboard scoreboard = new Scoreboard();
-            Stick stick = new Stick();
-            Cherry cherry = new Cherry(0);
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("scene1.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
+            Parent root= loader.load();
+            Controller1 controller1 = loader.getController();
             Scene scene1 = new Scene(root);
             stage.setScene(scene1);
             stage.setResizable(false);
@@ -33,4 +31,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         Application.launch(args);
     }
+
 }
