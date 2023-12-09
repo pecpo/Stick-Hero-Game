@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -32,6 +33,7 @@ public class Game extends Application {
     Stage stage;
     private Timeline sh=null;
     private Timeline sy=null;
+    private Button pauseButton;
     private Rectangle platformCurrent=null;
     private Rectangle platformNext=null;
     private ImageView cherry=null;
@@ -39,6 +41,8 @@ public class Game extends Application {
     private Scoreboard highScoreboard=null;
     private Scoreboard cherryScore=null;
     private Rectangle stick;
+
+    private Player playerObject;
     private ImageView player;
     private static boolean isFlipped=false;
     private static boolean isStill=true;
@@ -47,7 +51,7 @@ public class Game extends Application {
     private boolean cherryCollected=false;
     private int currentScore=0;
     private int highScore=0;
-    private int cherryCount=5;
+    private int cherryCount=0;
     private double dist;
     Random random = new Random();
 
@@ -64,7 +68,7 @@ public class Game extends Application {
             KeyCode keyCode = event.getCode();
             if(!isAlive){
                 if(keyCode==KeyCode.R){
-                    if(cherryCount>2){
+                    if(cherryCount>=2){
                         cherryCount-=2;
                         newcontgame();
                     }
@@ -302,9 +306,11 @@ public class Game extends Application {
         int distance = random.nextInt(100)+50;
         platformNext.setX(platformCurrent.getX()+platformCurrent.getWidth()+distance);
 
-        stick = new Rectangle(0,10, Color.BLUE);
-        stick.setWidth(10);
-        player = new ImageView(Controller1.getCharacter());
+        stick = new Rectangle(0,0, Color.BLUE);
+        stick.setWidth(5);
+        playerObject=Player.getPlayer();
+        playerObject.setPlayerimage(new ImageView(Controller1.getCharacter()));
+        player = Player.getPlayer().getplayerimage();
         player.setFitHeight(40);
         player.setFitWidth(40);
         player.setX(platformCurrent.getX() + platformCurrent.getWidth() - player.getFitWidth());
@@ -320,8 +326,8 @@ public class Game extends Application {
         if(cherrySpawn && currentScore!=0){
             System.out.println("cherry spawned");
             cherry= new ImageView("cherry.png");
-            cherry.setFitHeight(40);
-            cherry.setFitWidth(40);
+            cherry.setFitHeight(20);
+            cherry.setFitWidth(20);
             cherry.setX(platformCurrent.getX()+platformCurrent.getWidth()+cherry.getFitWidth());
             cherry.setY(platformCurrent.getY());
             mainPane.getChildren().add(cherry);
@@ -366,10 +372,12 @@ public class Game extends Application {
 
         scoreboard = new Scoreboard("Score: "+currentScore,"black");
         cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
+        pauseButton = new Button("Pause");
 
         mainPane.getChildren().add(scoreboard);
         mainPane.getChildren().add(highScoreboard);
         mainPane.getChildren().add(cherryScore);
+//        mainPane.getChildren().add(pauseButton);
 
         AnchorPane.setTopAnchor(scoreboard, 10.0);
         AnchorPane.setLeftAnchor(scoreboard, 10.0);
@@ -377,9 +385,30 @@ public class Game extends Application {
         AnchorPane.setTopAnchor(cherryScore, 30.0);
         AnchorPane.setLeftAnchor(cherryScore, 10.0);
 
-
-        AnchorPane.setTopAnchor(highScoreboard, 55.0);
+        AnchorPane.setTopAnchor(highScoreboard, 50.0);
         AnchorPane.setLeftAnchor(highScoreboard, 10.0);
+
+        AnchorPane.setTopAnchor(pauseButton, 10.0);
+        AnchorPane.setRightAnchor(pauseButton, 10.0);
+
+//        pauseButton.setOnAction(event -> {
+//            try {
+//                serializeGame();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));
+//            Parent root= null;
+//            try {
+//                root = loader.load();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            Controller2 pauseController = loader.getController();
+//            Scene scene1 = new Scene(root);
+//            stage.setScene(scene1);
+//            stage.show();
+//        });
 
         isFlipped=false;
         isStill=true;
