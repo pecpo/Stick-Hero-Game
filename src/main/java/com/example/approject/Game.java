@@ -63,7 +63,6 @@ public class Game extends Application {
     Random random = new Random();
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         stage=primaryStage;
         mainPane=setup();
         mainScene = new Scene(mainPane, 500, 800);
