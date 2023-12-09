@@ -23,7 +23,9 @@ package com.example.approject;//package com.example.approject;
 //}
 import javafx.scene.text.Text;
 
-public class Scoreboard extends Text {
+import java.io.Serializable;
+
+public class Scoreboard extends Text implements Serializable {
 
     public Scoreboard(String s, String color){
         super(s);

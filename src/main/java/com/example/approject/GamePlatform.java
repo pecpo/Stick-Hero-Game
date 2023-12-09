@@ -48,32 +48,7 @@ public class GamePlatform {
     public void setVisible(boolean visible) {
         isVisible = visible;
     }
-    public static void generate(AnchorPane anchorPane){
-        Random random = new Random();
-        if(Controller.getFirst()==1){
-            double left=Controller.getLeft();
-            double width = 30;
-            GamePlatform.setWidth(width);
-            Rectangle platform = new Rectangle(width, 300);
-            platform.setFill(Color.BLACK);
-            AnchorPane.setLeftAnchor(platform, 0.0);
-            AnchorPane.setBottomAnchor(platform, 0.0);
-            anchorPane.getChildren().add(platform);
-            Controller.setFirst(0);
-            return;
-        }
-        double left=Controller.getLeft();
-        left+= random.nextDouble() * 290 + 100;
-        double width = random.nextDouble() * 50 + 30;
-        GamePlatform.setWidth(width);
-        Rectangle platform = new Rectangle(width, 300);
-        platform.setFill(Color.BLACK);
-        AnchorPane.setLeftAnchor(platform, left);
-        AnchorPane.setBottomAnchor(platform, 0.0);
-        anchorPane.getChildren().add(platform);
-        Controller.setLeft(left);
-        GamePlatform.setDistanceX(left);
-    }
+
     public double getPositionX() {
         return positionX;
     }

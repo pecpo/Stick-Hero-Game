@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
@@ -20,7 +21,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.media.MediaPlayer;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Game extends Application {
@@ -35,6 +37,7 @@ public class Game extends Application {
     private ImageView cherry=null;
     private Scoreboard scoreboard=null;
     private Scoreboard highScoreboard=null;
+    private Scoreboard cherryScore=null;
     private Rectangle stick;
     private ImageView player;
     private static boolean isFlipped=false;
@@ -56,8 +59,31 @@ public class Game extends Application {
         mainScene = new Scene(mainPane, 500, 800);
 
         mainScene.setOnKeyPressed(event -> {
-            System.out.println("flip");
-            setFlipped(player);
+
+
+            KeyCode keyCode = event.getCode();
+            if(!isAlive){
+                if(keyCode==KeyCode.R){
+                    gameContinue();
+                }
+                else if(keyCode==KeyCode.Q){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
+                    Parent root= null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Controller1 controller1 = loader.getController();
+                    Scene scene1 = new Scene(root);
+                    stage.setScene(scene1);
+                    stage.show();
+                }
+            } else if (keyCode ==KeyCode.SPACE) {
+                System.out.println("flip");
+                setFlipped(player);
+            }
+
         });
 
         mainScene.setOnMousePressed(this::handleMousePress);
@@ -110,7 +136,7 @@ public class Game extends Application {
         }
 
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), player);
-        translateTransition.setByX(dist+player.getFitWidth());
+        translateTransition.setByX(stick.getHeight());
         translateTransition.play();
 
         translateTransition.setOnFinished(event1 -> {
@@ -118,8 +144,8 @@ public class Game extends Application {
             if (isAlive && stick.getHeight() < platformNext.getX() - platformCurrent.getX() -
                     platformCurrent.getWidth() || stick.getHeight()>platformNext.getX()+platformNext.getWidth() -
                     platformCurrent.getX() - platformCurrent.getWidth()){
+                isAlive=false;
                 try {
-                    isAlive=false;
                     gameOver();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -191,11 +217,64 @@ public class Game extends Application {
 
 
     private void gameOver() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("died.fxml"));
-        Parent root= loader.load();
-        mainScene = new Scene(root);
+
+        Image backgroundImage = new Image("deathbg.png");
+
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
+        );
+
+        mainPane.getChildren().removeAll(player, stick, platformCurrent, platformNext);
+        mainPane.setBackground(new Background(background));
+
+
+        serializeHigh(highScore);
         stage.setScene(mainScene);
         stage.show();
+    }
+
+    public void serializeHigh(Integer highScore) throws IOException {
+        PrintWriter out=null;
+        try{
+            out = new PrintWriter( new
+                    FileWriter("highscore.txt"));
+            out.println(highScore);
+        }
+        finally {
+            if(out!=null){
+                out.close();
+            }
+        }
+    }
+
+    public void serializeGame() throws IOException {
+        ObjectOutputStream out=null;
+        try{
+            out=new ObjectOutputStream(new FileOutputStream("gamefile"));
+            out.writeObject(this);
+        }
+        finally {
+            if(out!=null){
+                out.close();
+            }
+        }
+    }
+
+    public int deserializeHigh() throws IOException, ClassNotFoundException {
+            BufferedReader in = null;
+            try {
+                 in = new BufferedReader( new FileReader("highscore.txt"));
+                 Integer hs= Integer.parseInt(in.readLine());
+                    return hs;
+            }
+
+            finally {
+                in.close();
+            }
     }
 
     public AnchorPane setup() {
@@ -224,11 +303,12 @@ public class Game extends Application {
         player.setY(platformCurrent.getY() - player.getFitHeight());
         stick.setTranslateY(player.getY() + player.getFitHeight());
 
-        if(cherry!=null){
+        if(cherry!=null && !cherryCollected){
             mainPane.getChildren().remove(cherry);
         }
         boolean cherrySpawn =random.nextBoolean();
         if(cherrySpawn && currentScore!=0){
+            System.out.println("cherry spawned");
             cherry= new ImageView("cherry.png");
             cherry.setFitHeight(30);
             cherry.setFitWidth(30);
@@ -261,12 +341,18 @@ public class Game extends Application {
             mainPane.getChildren().remove(cherry);
         }
 
-        Scoreboard scoreboard = new Scoreboard("Score: "+currentScore,"black");
-        Scoreboard highScore = new Scoreboard("HighScore: "+this.highScore,"black");
-        Scoreboard cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
+        try {
+            highScore=deserializeHigh();
+            highScoreboard = new Scoreboard("HighScore: "+highScore,"black");
+        } catch (Exception e) {
+            highScoreboard = new Scoreboard("HighScore: "+this.highScore,"black");
+        }
+
+         scoreboard = new Scoreboard("Score: "+currentScore,"black");
+         cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
 
         mainPane.getChildren().add(scoreboard);
-        mainPane.getChildren().add(highScore);
+        mainPane.getChildren().add(highScoreboard);
         mainPane.getChildren().add(cherryScore);
 
         AnchorPane.setTopAnchor(scoreboard, 10.0);
@@ -276,13 +362,14 @@ public class Game extends Application {
         AnchorPane.setLeftAnchor(cherryScore, 200.0);
 
 
-        AnchorPane.setTopAnchor(highScore, 10.0);
-        AnchorPane.setRightAnchor(highScore, 10.0);
+        AnchorPane.setTopAnchor(highScoreboard, 10.0);
+        AnchorPane.setRightAnchor(highScoreboard, 10.0);
 
         isFlipped=false;
         isStill=true;
         isRotated=false;
         cherryCollected=false;
+        isAlive=true;
         return mainPane;
     }
 
@@ -296,8 +383,28 @@ public class Game extends Application {
     public Scene reScene(){
         mainScene= new Scene(mainPane, 500, 800);
         mainScene.setOnKeyPressed(event -> {
-            System.out.println("flip");
-            setFlipped(player);
+            KeyCode keyCode = event.getCode();
+            if(!isAlive){
+                if(keyCode==KeyCode.R){
+                    gameContinue();
+                }
+                else if(keyCode==KeyCode.Q){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
+                    Parent root= null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Controller1 controller1 = loader.getController();
+                    Scene scene1 = new Scene(root);
+                    stage.setScene(scene1);
+                    stage.show();
+                }
+            } else if (keyCode ==KeyCode.SPACE) {
+                System.out.println("flip");
+                setFlipped(player);
+            }
         });
 
         mainScene.setOnMousePressed(this::handleMousePress);
