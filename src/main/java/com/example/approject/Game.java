@@ -305,12 +305,15 @@ public class Game extends Application {
         }
         else {
             platformCurrent = new Rectangle(platformCurrent.getX(), platformNext.getY(), platformNext.getWidth(), platformNext.getHeight());
+
         }
         platformNext = randomRectangle();
         int distance = random.nextInt(100)+50;
         platformNext.setX(platformCurrent.getX()+platformCurrent.getWidth()+distance);
+        platformCurrent.setFill(Color.GHOSTWHITE);
+        platformNext.setFill(Color.GHOSTWHITE);
 
-        stick = new Rectangle(0,0, Color.BLUE);
+        stick = new Rectangle(0,0, Color.MEDIUMPURPLE);
         stick.setWidth(5);
         playerObject=Player.getPlayer();
         playerObject.setPlayerimage(new ImageView(Controller1.getCharacter()));
@@ -426,6 +429,7 @@ public class Game extends Application {
         int width = random.nextInt(100)+100;
         int x = random.nextInt(50);
         Rectangle rectangle = new Rectangle(x, 600, width, 200);
+        rectangle.setFill(Color.GHOSTWHITE);
         return rectangle;
     }
 
