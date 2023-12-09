@@ -311,8 +311,8 @@ public class Game extends Application {
         playerObject=Player.getPlayer();
         playerObject.setPlayerimage(new ImageView(Controller1.getCharacter()));
         player = Player.getPlayer().getplayerimage();
-        player.setFitHeight(40);
-        player.setFitWidth(40);
+        player.setFitHeight(30);
+        player.setFitWidth(30);
         player.setX(platformCurrent.getX() + platformCurrent.getWidth() - player.getFitWidth());
         dist=distance;
         stick.setTranslateX(player.getX() + player.getFitWidth());
@@ -419,7 +419,7 @@ public class Game extends Application {
     }
 
     public Rectangle randomRectangle(){
-        int width = random.nextInt(100)+100;
+        int width = random.nextInt(100)+50;
         int x = random.nextInt(50);
         Rectangle rectangle = new Rectangle(x, 600, width, 200);
         rectangle.setFill(Color.GHOSTWHITE);
