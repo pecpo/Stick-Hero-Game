@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/DiedController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/approject/BackOnTrack.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/approject/died.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject.uml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Background.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Stick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Stick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/approject/scene1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/approject/scene1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/approject/scene2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/approject/scene2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Scoreboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +54,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -76,14 +69,17 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.29936305",
     "settings.editor.selected.configurable": "build.tools",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.approject" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Tanmay\Documents\code\java\APProject1\src\main\resources\com\example\approject" />
       <recent name="C:\Users\Tanmay\Documents\code\java\APProject1\src\main\resources" />
@@ -115,7 +111,9 @@
       <workItem from="1700247906570" duration="1926000" />
       <workItem from="1700285147695" duration="1088000" />
       <workItem from="1700307616932" duration="4518000" />
-      <workItem from="1702046451418" duration="29830000" />
+      <workItem from="1702046451418" duration="35371000" />
+      <workItem from="1702117507545" duration="209000" />
+      <workItem from="1702117726696" duration="2127000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -229,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700313201159</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Changes">
+      <option name="closed" value="true" />
+      <created>1702077447232</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1702077447232</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

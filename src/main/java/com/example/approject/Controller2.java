@@ -14,14 +14,9 @@ import java.util.Objects;
 
 public class Controller2 {
     @FXML
-    private void switchToScene3(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("scene3.fxml"));
-        Parent root= loader.load();
-        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
-        stage.show();
+    private void switchToScene3(ActionEvent event) throws Exception {
+        Game game=new Game();
+        game.start((Stage)((Node)event.getSource()).getScene().getWindow());
     }
 
     public void exit(ActionEvent actionEvent) {

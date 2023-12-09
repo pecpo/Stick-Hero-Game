@@ -30,17 +30,21 @@ public class Game extends Application {
 
     private AnchorPane mainPane;
     private Scene mainScene;
-    Stage stage = new Stage();
+    Stage stage;
     private Timeline sh=null;
     private Timeline sy=null;
     private Rectangle platformCurrent=null;
     private Rectangle platformNext=null;
+    private ImageView cherry=null;
+    private Scoreboard scoreboard=null;
+    private Scoreboard highScoreboard=null;
     private Rectangle stick;
     private ImageView player;
     private static boolean isFlipped=false;
     private static boolean isStill=true;
     private static boolean isRotated=false;
     private boolean isAlive=true;
+    private boolean cherryCollected=false;
     private int currentScore=0;
     private int highScore=0;
     private int cherryCount=0;
@@ -50,6 +54,7 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        stage=primaryStage;
         mainPane=setup();
         mainScene = new Scene(mainPane, 500, 800);
 
@@ -108,7 +113,7 @@ public class Game extends Application {
         }
 
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), player);
-        translateTransition.setByX(stick.getHeight() + 15);
+        translateTransition.setByX(dist+player.getFitWidth());
         translateTransition.play();
 
         translateTransition.setOnFinished(event1 -> {
@@ -135,6 +140,11 @@ public class Game extends Application {
         TranslateTransition translateTransition2 = new TranslateTransition(Duration.seconds(2), platformCurrent);
         TranslateTransition translateTransition3 = new TranslateTransition(Duration.seconds(2), platformNext);
         TranslateTransition translateTransition4 = new TranslateTransition(Duration.seconds(2), stick);
+        TranslateTransition translateTransition5 = null;
+        if(cherry!=null){
+            translateTransition5 = new TranslateTransition(Duration.seconds(2), cherry);
+            translateTransition5.setByX(-dist-platformCurrent.getWidth());
+        }
 
         translateTransition.setByX(-dist-platformCurrent.getWidth());
         translateTransition2.setByX(-dist-platformCurrent.getWidth());
@@ -145,8 +155,11 @@ public class Game extends Application {
         translateTransition2.play();
         translateTransition3.play();
         translateTransition4.play();
+        if(cherry!=null){
+            translateTransition5.play();
+        }
 
-        checkCollisions();
+        checkPlatformCollisions();
 
         translateTransition4.setOnFinished(event -> {
 
@@ -169,6 +182,8 @@ public class Game extends Application {
             if(!isAlive){
                 return;
             }
+            currentScore++;
+            highScore=Math.max(currentScore, highScore);
             mainPane=setup();
             mainScene=reScene();
             stage.setScene(mainScene);
@@ -187,6 +202,7 @@ public class Game extends Application {
     }
 
     public AnchorPane setup() {
+
         AnchorPane mainPane = new AnchorPane();
         mainPane.setPrefSize(500, 800);
         platformCurrent = randomRectangle();
@@ -199,6 +215,7 @@ public class Game extends Application {
         platformNext = randomRectangle();
         int distance = random.nextInt(100)+50;
         platformNext.setX(platformCurrent.getX()+platformCurrent.getWidth()+distance);
+
         stick = new Rectangle(0,10, Color.BLUE);
         stick.setWidth(10);
         player = new ImageView("character.png");
@@ -209,12 +226,56 @@ public class Game extends Application {
         stick.setTranslateX(player.getX() + player.getFitWidth());
         player.setY(platformCurrent.getY() - player.getFitHeight());
         stick.setTranslateY(player.getY() + player.getFitHeight());
+
+        if(cherry!=null){
+            mainPane.getChildren().remove(cherry);
+        }
+        boolean cherrySpawn =random.nextBoolean();
+        if(cherrySpawn && currentScore!=0){
+            cherry= new ImageView("cherry.png");
+            cherry.setFitHeight(30);
+            cherry.setFitWidth(30);
+            cherry.setX(platformCurrent.getX()+platformCurrent.getWidth()+cherry.getFitWidth());
+            cherry.setY(platformCurrent.getY());
+            mainPane.getChildren().add(cherry);
+        }
+
         mainPane.getChildren().addAll(platformCurrent, platformNext, stick, player);
 //        mainPane.getChildren().addAll(player);
         mainPane.setStyle("-fx-background-color: #FFFFFF;");
+
+        if(scoreboard!=null){
+            mainPane.getChildren().remove(scoreboard);
+        }
+        if(highScoreboard!=null){
+            mainPane.getChildren().remove(highScoreboard);
+        }
+        if(cherryCount!=0){
+            mainPane.getChildren().remove(cherry);
+        }
+
+        Scoreboard scoreboard = new Scoreboard("Score: "+currentScore,"black");
+        Scoreboard highScore = new Scoreboard("HighScore: "+this.highScore,"black");
+        Scoreboard cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
+
+        mainPane.getChildren().add(scoreboard);
+        mainPane.getChildren().add(highScore);
+        mainPane.getChildren().add(cherryScore);
+
+        AnchorPane.setTopAnchor(scoreboard, 10.0);
+        AnchorPane.setLeftAnchor(scoreboard, 10.0);
+
+        AnchorPane.setTopAnchor(cherryScore, 10.0);
+        AnchorPane.setLeftAnchor(cherryScore, 200.0);
+
+
+        AnchorPane.setTopAnchor(highScore, 10.0);
+        AnchorPane.setRightAnchor(highScore, 10.0);
+
         isFlipped=false;
         isStill=true;
         isRotated=false;
+        cherryCollected=false;
         return mainPane;
     }
 
@@ -257,7 +318,7 @@ public class Game extends Application {
 
     }
 
-    private void checkCollisions() {
+    private void checkPlatformCollisions() {
         // Use a Timeline or AnimationTimer to continuously check for collisions
         // For simplicity, a basic AnimationTimer is used in this example
 
@@ -279,6 +340,18 @@ public class Game extends Application {
 //                    gameOver();
                     // Handle collision logic here
                 }
+                else if(cherry!=null) {
+                    if((player.getBoundsInParent().intersects(cherry.getBoundsInParent()) && isFlipped)){
+                        if(cherryCollected){
+                            return;
+                        }
+                        cherryCollected=true;
+                        mainPane.getChildren().remove(cherry);
+                        System.out.println("Cherry Collision detected!");
+                        cherryCount++;
+                    }
+                    // Handle collision logic here
+                }
             }
         };
 
@@ -286,7 +359,9 @@ public class Game extends Application {
         timer.start();
     }
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
+
+
+//    public static void main(String[] args) {
+//        Application.launch(args);
+//    }
 }
