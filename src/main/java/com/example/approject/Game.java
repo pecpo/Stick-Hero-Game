@@ -358,12 +358,12 @@ public class Game extends Application {
         AnchorPane.setTopAnchor(scoreboard, 10.0);
         AnchorPane.setLeftAnchor(scoreboard, 10.0);
 
-        AnchorPane.setTopAnchor(cherryScore, 10.0);
-        AnchorPane.setLeftAnchor(cherryScore, 200.0);
+        AnchorPane.setTopAnchor(cherryScore, 30.0);
+        AnchorPane.setLeftAnchor(cherryScore, 10.0);
 
 
-        AnchorPane.setTopAnchor(highScoreboard, 10.0);
-        AnchorPane.setRightAnchor(highScoreboard, 10.0);
+        AnchorPane.setTopAnchor(highScoreboard, 55.0);
+        AnchorPane.setLeftAnchor(highScoreboard, 10.0);
 
         isFlipped=false;
         isStill=true;
