@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-12-2023_21_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-12-2023_21_48__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-12-2023_22_19__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09-12-2023_22_19__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/approject/cherry.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/approject/cherry.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/approject/BackOnTrack.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/approject/bg.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/approject/collision.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/approject/collision.mp3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -344,7 +343,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702138003134</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Changes">
+      <option name="closed" value="true" />
+      <created>1702141678430</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1702141678430</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

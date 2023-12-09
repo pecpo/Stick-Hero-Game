@@ -52,6 +52,7 @@ public class Game extends Application {
     private int highScore=0;
     private int cherryCount=0;
     private double dist;
+    private MediaPlayer bgmusicplayer;
     Random random = new Random();
 
     @Override
@@ -60,7 +61,9 @@ public class Game extends Application {
         stage=primaryStage;
         mainPane=setup();
         mainScene = new Scene(mainPane, 500, 800);
-
+        bgmusicplayer=new MediaPlayer(new Media(getClass().getResource("bg.mp3").toString()));
+        bgmusicplayer.play();
+        bgmusicplayer.volumeProperty().setValue(0.5);
         mainScene.setOnKeyPressed(event -> {
 
 
@@ -510,6 +513,7 @@ public class Game extends Application {
                     }
                     System.out.println("Collision detected!");
                     isAlive = false;
+                    bgmusicplayer.stop();
                     MediaPlayer mediaPlayer=new MediaPlayer(new Media(getClass().getResource("collision.mp3").toString()));
                     mediaPlayer.play();
                     try {
