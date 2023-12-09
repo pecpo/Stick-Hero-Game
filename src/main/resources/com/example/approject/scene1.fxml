@@ -24,7 +24,7 @@
             <Button layoutX="28.0" layoutY="348.0" mnemonicParsing="false" onAction="#switchCharacter2" prefHeight="124.0" prefWidth="33.0" text="&lt;-" />
             <ImageView fx:id="myCharacter" fitHeight="150.0" fitWidth="200.0" layoutX="167.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../character.png" />
+                  <Image url="@../../../original.png" />
                </image>
             </ImageView>
          </children>
