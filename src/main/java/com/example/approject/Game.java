@@ -242,8 +242,8 @@ public class Game extends Application {
 
         checkPlatformCollisions();
 
-        transitioning=false;
         translateTransition4.setOnFinished(event -> {
+            transitioning=false;
             if(!isAlive){
                 return;
             }
