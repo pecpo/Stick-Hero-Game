@@ -47,7 +47,7 @@ public class Game extends Application {
     private boolean cherryCollected=false;
     private int currentScore=0;
     private int highScore=0;
-    private int cherryCount=0;
+    private int cherryCount=5;
     private double dist;
     Random random = new Random();
 
@@ -64,17 +64,33 @@ public class Game extends Application {
             KeyCode keyCode = event.getCode();
             if(!isAlive){
                 if(keyCode==KeyCode.R){
-                    gameContinue();
+                    if(cherryCount>2){
+                        cherryCount-=2;
+                        newcontgame();
+                    }
+                    else{
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));
+                        Parent root= null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Controller2 controller2 = loader.getController();
+                        Scene scene1 = new Scene(root);
+                        stage.setScene(scene1);
+                        stage.show();
+                    }
                 }
                 else if(keyCode==KeyCode.Q){
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));
                     Parent root= null;
                     try {
                         root = loader.load();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    Controller1 controller1 = loader.getController();
+                    Controller2 controller2 = loader.getController();
                     Scene scene1 = new Scene(root);
                     stage.setScene(scene1);
                     stage.show();
@@ -156,6 +172,17 @@ public class Game extends Application {
             }
         });
 
+    }
+
+    private void newcontgame(){
+
+        currentScore++;
+        highScore=Math.max(currentScore, highScore);
+
+        mainPane=setup();
+        mainScene=reScene();
+        stage.setScene(mainScene);
+        stage.show();
     }
 
     private void gameContinue() {
@@ -286,7 +313,7 @@ public class Game extends Application {
         player.setY(platformCurrent.getY() - player.getFitHeight());
         stick.setTranslateY(player.getY() + player.getFitHeight());
 
-        if(cherry!=null && !cherryCollected){
+        if(cherry!=null || !cherryCollected){
             mainPane.getChildren().remove(cherry);
         }
         boolean cherrySpawn =random.nextBoolean();
@@ -324,15 +351,20 @@ public class Game extends Application {
             mainPane.getChildren().remove(cherry);
         }
 
-        try {
-            highScore=deserializeHigh();
-            highScoreboard = new Scoreboard("HighScore: "+highScore,"black");
-        } catch (Exception e) {
+        if(currentScore==0){
+            try {
+                highScore=deserializeHigh();
+                highScoreboard = new Scoreboard("HighScore: "+highScore,"black");
+            } catch (Exception e) {
+                highScoreboard = new Scoreboard("HighScore: "+this.highScore,"black");
+            }
+        }
+        else{
             highScoreboard = new Scoreboard("HighScore: "+this.highScore,"black");
         }
 
-         scoreboard = new Scoreboard("Score: "+currentScore,"black");
-         cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
+        scoreboard = new Scoreboard("Score: "+currentScore,"black");
+        cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
 
         mainPane.getChildren().add(scoreboard);
         mainPane.getChildren().add(highScoreboard);
@@ -369,17 +401,33 @@ public class Game extends Application {
             KeyCode keyCode = event.getCode();
             if(!isAlive){
                 if(keyCode==KeyCode.R){
-                    gameContinue();
+                    if(cherryCount>2){
+                        cherryCount-=2;
+                        newcontgame();
+                    }
+                    else{
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));
+                        Parent root= null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Controller2 controller1 = loader.getController();
+                        Scene scene1 = new Scene(root);
+                        stage.setScene(scene1);
+                        stage.show();
+                    }
                 }
                 else if(keyCode==KeyCode.Q){
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("scene1.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));
                     Parent root= null;
                     try {
                         root = loader.load();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    Controller1 controller1 = loader.getController();
+                    Controller2 controller1 = loader.getController();
                     Scene scene1 = new Scene(root);
                     stage.setScene(scene1);
                     stage.show();
