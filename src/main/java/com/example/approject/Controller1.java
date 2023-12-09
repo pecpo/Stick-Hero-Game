@@ -23,7 +23,7 @@ public class Controller1 {
         return Character;
     }
 
-    private static String Character="character.png";
+    private static String Character="original.png";
     @FXML
     private ImageView myCharacter;
     @FXML
