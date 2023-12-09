@@ -5,23 +5,20 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.IOException;
 import java.util.Random;
@@ -242,7 +239,17 @@ public class Game extends Application {
 
         mainPane.getChildren().addAll(platformCurrent, platformNext, stick, player);
 //        mainPane.getChildren().addAll(player);
-        mainPane.setStyle("-fx-background-color: #FFFFFF;");
+        Image backgroundImage = new Image("bg1.png");
+
+        // Create a background with the image
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
+        );
+        mainPane.setBackground(new Background(background));
 
         if(scoreboard!=null){
             mainPane.getChildren().remove(scoreboard);
@@ -332,6 +339,8 @@ public class Game extends Application {
                     }
                     System.out.println("Collision detected!");
                     isAlive = false;
+                    MediaPlayer mediaPlayer=new MediaPlayer(new Media(getClass().getResource("collision.mp3").toString()));
+                    mediaPlayer.play();
                     try {
                         gameOver();
                     } catch (IOException e) {
@@ -345,6 +354,8 @@ public class Game extends Application {
                         if(cherryCollected){
                             return;
                         }
+                        MediaPlayer mediaPlayer=new MediaPlayer(new Media(getClass().getResource("cherry.mp3").toString()));
+                        mediaPlayer.play();
                         cherryCollected=true;
                         mainPane.getChildren().remove(cherry);
                         System.out.println("Cherry Collision detected!");
