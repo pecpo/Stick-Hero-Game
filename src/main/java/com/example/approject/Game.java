@@ -117,10 +117,6 @@ public class Game extends Application {
         mainScene.setOnMousePressed(this::handleMousePress);
 
         mainScene.setOnMouseReleased(this::handleMouseReleased);
-//        mainScene.setOnKeyReleased(event -> {
-//            System.out.println("release");
-//            handleKeyReleased(event);
-//        });
 
         GamePlatform gamePlatform = new GamePlatform(1,1,1,1,1);
         gamePlatform.setDistanceX(0);
@@ -218,6 +214,10 @@ public class Game extends Application {
     }
 
     private void gameContinue() {
+        if (transitioning){
+            return;
+        }
+        transitioning=true;
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2), player);
         TranslateTransition translateTransition2 = new TranslateTransition(Duration.seconds(2), platformCurrent);
         TranslateTransition translateTransition3 = new TranslateTransition(Duration.seconds(2), platformNext);
@@ -243,6 +243,7 @@ public class Game extends Application {
 
         checkPlatformCollisions();
 
+        transitioning=false;
         translateTransition4.setOnFinished(event -> {
             if(!isAlive){
                 return;
@@ -521,13 +522,10 @@ public class Game extends Application {
     }
 
     private void checkPlatformCollisions() {
-        // Use a Timeline or AnimationTimer to continuously check for collisions
-        // For simplicity, a basic AnimationTimer is used in this example
 
         javafx.animation.AnimationTimer timer = new javafx.animation.AnimationTimer() {
             @Override
             public void handle(long now) {
-                // Check if bounding boxes intersect
                 if (player.getBoundsInParent().intersects(platformNext.getBoundsInParent()) && isFlipped) {
                     if(!isAlive){
                        return;
@@ -542,8 +540,6 @@ public class Game extends Application {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-//                    gameOver();
-                    // Handle collision logic here
                 }
                 else if(cherry!=null) {
                     if((player.getBoundsInParent().intersects(cherry.getBoundsInParent()) && isFlipped)){
@@ -558,24 +554,10 @@ public class Game extends Application {
                         cherryCount++;
                         totalCherries++;
                     }
-                    // Handle collision logic here
                 }
             }
         };
 
-        // Start the AnimationTimer
         timer.start();
     }
-//    public void serializeGame() throws IOException {
-//        ObjectOutputStream out=null;
-//        try{
-//            out=new ObjectOutputStream(new FileOutputStream("gamefile"));
-//            out.writeObject(this);
-//        }
-//        finally {
-//            if(out!=null){
-//                out.close();
-//            }
-//        }
-//    }
 }
