@@ -122,6 +122,14 @@ public class Game extends Application {
 //            handleKeyReleased(event);
 //        });
 
+        GamePlatform gamePlatform = new GamePlatform(1,1,1,1,1);
+        gamePlatform.setDistanceX(0);
+        gamePlatform.setPerfectPoint(0);
+        gamePlatform.setPositionX(0);
+        gamePlatform.setWidth(0);
+        gamePlatform.setVisible(true);
+        gamePlatform.hide();
+
         stage.setScene(mainScene);
         stage.setResizable(false);
         stage.setTitle("Stick Hero");
@@ -399,6 +407,13 @@ public class Game extends Application {
 
         scoreboard = new Scoreboard("Score: "+currentScore,"black");
         cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
+
+
+        scoreboard.update();
+        highScoreboard.update();
+        cherryScore.update();
+        lastScoreboard.update();
+        totalCherryScore.update();
 
         mainPane.getChildren().add(scoreboard);
         mainPane.getChildren().add(highScoreboard);

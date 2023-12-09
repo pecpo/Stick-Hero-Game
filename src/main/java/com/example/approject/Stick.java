@@ -27,27 +27,6 @@ public class Stick {
         line.setEndX(15);
         line.setEndY(550);
     }
-//    public double getLength() {
-//        return length;
-//    }
-//
-//    public void setLength(double lengths) {
-//        length = lengths;
-//    }
 
-    public void extend(KeyEvent event){
-//        while(event.getCode()== KeyCode.SPACE){
-//            Controller.setIsSpacePressed(true);
-//            StickLine.setEndY(StickLine.getEndY()+100);
-//            length+=1;
-//        }
-    }
 
-    public void reset(KeyEvent event){
-//        if(event.getCode()== KeyCode.SPACE){
-//            Controller.setIsSpacePressed(false);
-//            GamePlatform.setDistanceX(length);
-//            length=0;
-//        }
-    }
 }
