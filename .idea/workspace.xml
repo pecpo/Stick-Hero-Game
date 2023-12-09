@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="updating">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/GameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Controller2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Scoreboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,25 +35,13 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="c976c66a-e3f5-4c8b-a40d-17edc46add28" />
+        <option name="accountId" value="79345e1e-bbb0-49f9-b2c4-a02dbc2faf1b" />
         <option name="url" value="https://github.com/pecpo/APProject.git" />
       </UrlAndAccount>
     </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="downloadAnnotationsAutomatically" value="true" />
-        <option name="downloadDocsAutomatically" value="true" />
-        <option name="downloadSourcesAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -68,25 +52,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Samridh Gupta/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Samridh Gupta/AppData/Local/SceneBuilder/SceneBuilder.exe",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.29936305",
+    "settings.editor.selected.configurable": "build.tools",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.approject" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tanmay\Documents\code\java\APProject1\src\main\resources\com\example\approject" />
+      <recent name="C:\Users\Tanmay\Documents\code\java\APProject1\src\main\resources" />
       <recent name="C:\College\Coding\Java\APProject\src\main\resources" />
       <recent name="C:\College\Coding\Java\APProject" />
     </key>
@@ -114,12 +110,10 @@
       <workItem from="1700064876345" duration="2745000" />
       <workItem from="1700247906570" duration="1926000" />
       <workItem from="1700285147695" duration="1088000" />
-      <workItem from="1700307616932" duration="5466000" />
-      <workItem from="1700385802423" duration="1614000" />
-      <workItem from="1700824361935" duration="25923000" />
-      <workItem from="1701071550012" duration="17720000" />
-      <workItem from="1701107680019" duration="3039000" />
-      <workItem from="1701490374452" duration="22000" />
+      <workItem from="1700307616932" duration="4518000" />
+      <workItem from="1702046451418" duration="35371000" />
+      <workItem from="1702117507545" duration="209000" />
+      <workItem from="1702117726696" duration="2127000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -235,133 +229,13 @@
     </task>
     <task id="LOCAL-00015" summary="Changes">
       <option name="closed" value="true" />
-      <created>1700313315424</created>
+      <created>1702077447232</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1700313315424</updated>
+      <updated>1702077447232</updated>
     </task>
-    <task id="LOCAL-00016" summary="Changes">
-      <option name="closed" value="true" />
-      <created>1700828214287</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1700828214287</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Changes">
-      <option name="closed" value="true" />
-      <created>1700855864767</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1700855864767</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Changes">
-      <option name="closed" value="true" />
-      <created>1700893647662</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1700893647662</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Changes">
-      <option name="closed" value="true" />
-      <created>1700912259086</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1700912259086</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Changes">
-      <option name="closed" value="true" />
-      <created>1700912268946</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1700912268946</updated>
-    </task>
-    <task id="LOCAL-00021" summary="updating">
-      <option name="closed" value="true" />
-      <created>1700912437367</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1700912437367</updated>
-    </task>
-    <task id="LOCAL-00022" summary="updating">
-      <option name="closed" value="true" />
-      <created>1700915873025</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1700915873025</updated>
-    </task>
-    <task id="LOCAL-00023" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701090291136</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1701090291136</updated>
-    </task>
-    <task id="LOCAL-00024" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701090299821</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1701090299821</updated>
-    </task>
-    <task id="LOCAL-00025" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701092442601</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1701092442601</updated>
-    </task>
-    <task id="LOCAL-00026" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701095213348</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1701095213348</updated>
-    </task>
-    <task id="LOCAL-00027" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701095252796</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1701095252796</updated>
-    </task>
-    <task id="LOCAL-00028" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701103667064</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1701103667064</updated>
-    </task>
-    <task id="LOCAL-00029" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701103676521</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1701103676521</updated>
-    </task>
-    <task id="LOCAL-00030" summary="updating">
-      <option name="closed" value="true" />
-      <created>1701104846025</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1701104846025</updated>
-    </task>
-    <option name="localTasksCounter" value="31" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,8 +288,14 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="Adding new scene" />
     <MESSAGE value="Changes" />
-    <MESSAGE value="updating" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="this" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
