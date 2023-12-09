@@ -1,5 +1,4 @@
 package com.example.approject;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -19,7 +18,6 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.media.MediaPlayer;
-
 import java.io.IOException;
 import java.util.Random;
 
@@ -68,7 +66,6 @@ public class Game extends Application {
 //            handleKeyReleased(event);
 //        });
 
-        stage.setScene(mainScene);
         stage.setResizable(false);
         stage.setTitle("Stick Hero");
         stage.setScene(mainScene);
@@ -369,10 +366,4 @@ public class Game extends Application {
         // Start the AnimationTimer
         timer.start();
     }
-
-
-
-//    public static void main(String[] args) {
-//        Application.launch(args);
-//    }
 }

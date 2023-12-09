@@ -100,6 +100,11 @@
         <version>21-ea+24</version>
     </dependency>
     <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-media</artifactId>
+        <version>21-ea+24</version>
+    </dependency>
+    <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
         <version>RELEASE</version>
@@ -134,20 +139,34 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-maven-plugin</artifactId>
             <version>0.0.8</version>
+            <configuration>
+                <mainClass>com.example.approject.Main</mainClass>
+            </configuration>
+        </plugin>
+<!--        <plugin>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-assembly-plugin</artifactId>-->
+<!--            <version>3.6.0</version>-->
+<!--            <configuration>-->
+<!--                <archive>-->
+<!--                    <manifest>-->
+<!--                        <mainClass>com.example.Main</mainClass>-->
+<!--                    </manifest>-->
+<!--                </archive>-->
+<!--                <descriptorRefs>-->
+<!--                    <descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--                </descriptorRefs>-->
+<!--            </configuration>-->
 <!--            <executions>-->
 <!--                <execution>-->
-<!--                    <id>javafx-package</id>-->
+<!--                    <id>make-assembly</id>-->
 <!--                    <phase>package</phase>-->
 <!--                    <goals>-->
-<!--&lt;!&ndash;                        <goal>javafx:run</goal>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <goal>javafx:native</goal>&ndash;&gt;-->
+<!--                        <goal>single</goal>-->
 <!--                    </goals>-->
 <!--                </execution>-->
 <!--            </executions>-->
-            <configuration>
-                <mainClass>com.example.approject/com.example.approject.Main</mainClass>
-            </configuration>
-        </plugin>
+<!--        </plugin>-->
     </plugins>
 </build>
 </project>
