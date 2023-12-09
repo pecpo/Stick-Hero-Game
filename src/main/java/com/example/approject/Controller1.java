@@ -45,8 +45,9 @@ public class Controller1 {
     }
     @FXML
     private void switchCharacter2(ActionEvent event) throws IOException {
-        Image image=new Image("sword_hero.png");
+        Image image=new Image("character.png");
         myCharacter.setImage(image);
+        Character="character.png";
     }
     @FXML
     private void switchToScene2(ActionEvent event) throws IOException {
