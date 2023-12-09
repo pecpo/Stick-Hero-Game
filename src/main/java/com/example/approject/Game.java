@@ -55,6 +55,11 @@ public class Game extends Application {
     }
     private int currentScore=0;
     private int highScore=0;
+
+    public int getCherryCount() {
+        return cherryCount;
+    }
+
     private int cherryCount=0;
     private int lastScore=0;
     private int totalCherries=0;

@@ -18,7 +18,7 @@ Prerequisites:
 Instructions for the game:
 1. While moving on pressing Space our character gets flipped, so he can take the cherries which are spawned.
 2. Hold on the left mouse button to extend the stick to the required length.
-3.
+3. We have to advance further to get more score.
 
 Design Patterns:
 1. Singleton: We use the singleton design pattern to generate an instance for the player which is called using the getPlayer() function.
