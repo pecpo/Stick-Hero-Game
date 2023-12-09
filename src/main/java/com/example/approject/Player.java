@@ -12,7 +12,6 @@ import javafx.scene.transform.Scale;
 import java.util.Vector;
 
 public class Player {
-
     private ImageView playerimage;
 
     private static Player playerobj=null;

@@ -40,7 +40,10 @@ public class Game extends Application {
 
     private Player playerObject;
     private ImageView player;
-    private static boolean isFlipped=false;
+    public static boolean isFlipped=false;
+    public boolean isIsFlipped() {
+        return isFlipped;
+    }
     private static boolean isStill=true;
     private static boolean isRotated=false;
     private boolean isAlive=true;
