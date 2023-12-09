@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -13,6 +15,18 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Controller1 {
+    @FXML
+    private ImageView myCharacter;
+    @FXML
+    private void switchCharacter1(ActionEvent event) throws IOException {
+        Image image=new Image("sword_hero.png");
+        myCharacter.setImage(image);
+    }
+    @FXML
+    private void switchCharacter2(ActionEvent event) throws IOException {
+        Image image=new Image("sword_hero.png");
+        myCharacter.setImage(image);
+    }
     @FXML
     private void switchToScene2(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));

@@ -185,23 +185,6 @@ public class Game extends Application {
         checkPlatformCollisions();
 
         translateTransition4.setOnFinished(event -> {
-
-//            System.out.println(platformNext.getWidth());
-//            mainPane.getChildren().remove(platformCurrent);
-//            mainPane.getChildren().remove(platformNext);
-//            mainPane.getChildren().remove(stick);
-//            platformCurrent=new Rectangle(platformCurrent.getX(), platformNext.getY(), platformNext.getWidth(), platformNext.getHeight());
-//            platformNext=randomRectangle();
-//            dist = random.nextInt(100)+50;
-//            platformNext.setX(platformCurrent.getX()+platformCurrent.getWidth()+dist);
-//            mainPane.getChildren().add(platformNext);
-//            System.out.println(platformCurrent.getWidth());
-//            player.setX(platformCurrent.getX());
-//            stick = new Rectangle(0,10, Color.BLUE);
-//            stick.setWidth(10);
-//            stick.setTranslateX(platformCurrent.getX() );
-//            stick.setTranslateY(player.getY() + player.getFitHeight());
-//            mainPane.getChildren().add(stick);
             if(!isAlive){
                 return;
             }
