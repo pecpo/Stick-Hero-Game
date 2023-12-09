@@ -12,7 +12,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 import javafx.scene.Scene;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
 import  java.io.*;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
     @Override
@@ -33,6 +38,11 @@ public class Main extends Application {
         }
     }
     public static void main(String[] args) {
+        Result result= JUnitCore.runClasses(GameTest.class);
+        for(Failure failure: result.getFailures()){
+            System.out.println(failure.toString());
+        }
+        System.out.println(result.wasSuccessful());
         Application.launch(args);
     }
 

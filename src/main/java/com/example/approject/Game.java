@@ -48,6 +48,11 @@ public class Game extends Application {
     private static boolean isRotated=false;
     private boolean isAlive=true;
     private boolean cherryCollected=false;
+
+    public int getCurrentScore() {
+        return currentScore;
+    }
+
     private int currentScore=0;
     private int highScore=0;
     private int cherryCount=0;
