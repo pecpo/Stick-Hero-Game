@@ -341,15 +341,20 @@ public class Game extends Application {
             mainPane.getChildren().remove(cherry);
         }
 
-        try {
-            highScore=deserializeHigh();
-            highScoreboard = new Scoreboard("HighScore: "+highScore,"black");
-        } catch (Exception e) {
+        if(currentScore==0){
+            try {
+                highScore=deserializeHigh();
+                highScoreboard = new Scoreboard("HighScore: "+highScore,"black");
+            } catch (Exception e) {
+                highScoreboard = new Scoreboard("HighScore: "+this.highScore,"black");
+            }
+        }
+        else{
             highScoreboard = new Scoreboard("HighScore: "+this.highScore,"black");
         }
 
-         scoreboard = new Scoreboard("Score: "+currentScore,"black");
-         cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
+        scoreboard = new Scoreboard("Score: "+currentScore,"black");
+        cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
 
         mainPane.getChildren().add(scoreboard);
         mainPane.getChildren().add(highScoreboard);
