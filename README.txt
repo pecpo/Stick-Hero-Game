@@ -15,6 +15,12 @@ Prerequisites:
 1. JavaFX-Media-18.01
 2. Junit 4
 
+Creative Twists:
+1. Background Music
+2. Special Sound Effect on getting cherry
+3. Lifetime cherry counter for better tracking of cherries.
+4. Character Icon change on main screen.
+
 Instructions for the game:
 1. While moving on pressing Space our character gets flipped, so he can take the cherries which are spawned.
 2. Hold on the left mouse button to extend the stick to the required length.
