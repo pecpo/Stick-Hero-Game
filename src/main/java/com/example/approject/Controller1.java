@@ -28,26 +28,33 @@ public class Controller1 {
     private ImageView myCharacter;
     @FXML
     private void switchCharacter1(ActionEvent event) throws IOException {
-        Image image=new Image("sword_hero.png");
-        myCharacter.setImage(image);
-//        Path sourcePath = Paths.get("src/main/resources/sword_hero.png");
-//        Path destinationPath = Paths.get("src/main/resources/character.png");
-//        try {
-//            // Copy the image using Files.copy method
-//            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-//
-//            System.out.println("Image copied successfully!");
-//        } catch (IOException e) {
-//            // Handle IOException, e.g., file not found, permission issues, etc.
-//            e.printStackTrace();
-//        }
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("scene1b.fxml"));
+        Parent root= loader.load();
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         Character="sword_hero.png";
     }
     @FXML
     private void switchCharacter2(ActionEvent event) throws IOException {
-        Image image=new Image("amogus.png");
-        myCharacter.setImage(image);
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("scene1a.fxml"));
+        Parent root= loader.load();
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         Character="amogus.png";
+    }
+    @FXML
+    private void switchCharacter3(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("scene1.fxml"));
+        Parent root= loader.load();
+        Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        Character="original.png";
     }
     @FXML
     private void switchToScene2(ActionEvent event) throws IOException {

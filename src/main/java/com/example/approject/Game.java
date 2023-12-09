@@ -23,7 +23,6 @@ import javafx.scene.media.MediaPlayer;
 import java.io.*;
 import java.util.Random;
 public class Game extends Application {
-
     private AnchorPane mainPane;
     private Scene mainScene;
     Stage stage;
@@ -37,7 +36,6 @@ public class Game extends Application {
     private Scoreboard highScoreboard=null;
     private Scoreboard cherryScore=null;
     private Rectangle stick;
-
     private Player playerObject;
     private ImageView player;
     public static boolean isFlipped=false;
@@ -48,18 +46,15 @@ public class Game extends Application {
     private static boolean isRotated=false;
     private boolean isAlive=true;
     private boolean cherryCollected=false;
-
     public int getCurrentScore() {
         return currentScore;
     }
-
     private int currentScore=0;
     private int highScore=0;
     private int cherryCount=0;
     private double dist;
     private MediaPlayer bgmusicplayer;
     Random random = new Random();
-
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -235,12 +230,8 @@ public class Game extends Application {
         });
 
     }
-
-
     private void gameOver() throws IOException {
-
         Image backgroundImage = new Image("deathbg.png");
-
         BackgroundImage background = new BackgroundImage(
                 backgroundImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -248,11 +239,8 @@ public class Game extends Application {
                 BackgroundPosition.DEFAULT,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
         );
-
         mainPane.getChildren().removeAll(player, stick, platformCurrent, platformNext);
         mainPane.setBackground(new Background(background));
-
-
         serializeHigh(highScore);
         stage.setScene(mainScene);
         stage.show();
@@ -294,7 +282,9 @@ public class Game extends Application {
             }
 
             finally {
-                in.close();
+                if(in!=null) {
+                    in.close();
+                }
             }
     }
 
@@ -549,10 +539,4 @@ public class Game extends Application {
         // Start the AnimationTimer
         timer.start();
     }
-
-
-
-//    public static void main(String[] args) {
-//        Application.launch(args);
-//    }
 }
