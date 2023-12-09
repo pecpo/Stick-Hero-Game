@@ -304,7 +304,7 @@ public class Game extends Application {
 
         stick = new Rectangle(0,10, Color.BLUE);
         stick.setWidth(10);
-        player = new ImageView("character.png");
+        player = new ImageView(Controller1.getCharacter());
         player.setFitHeight(40);
         player.setFitWidth(40);
         player.setX(platformCurrent.getX() + platformCurrent.getWidth() - player.getFitWidth());
@@ -320,14 +320,15 @@ public class Game extends Application {
         if(cherrySpawn && currentScore!=0){
             System.out.println("cherry spawned");
             cherry= new ImageView("cherry.png");
-            cherry.setFitHeight(30);
-            cherry.setFitWidth(30);
+            cherry.setFitHeight(40);
+            cherry.setFitWidth(40);
             cherry.setX(platformCurrent.getX()+platformCurrent.getWidth()+cherry.getFitWidth());
             cherry.setY(platformCurrent.getY());
             mainPane.getChildren().add(cherry);
         }
 
         mainPane.getChildren().addAll(platformCurrent, platformNext, stick, player);
+
 //        mainPane.getChildren().addAll(player);
         Image backgroundImage = new Image("bg1.png");
 
@@ -348,7 +349,7 @@ public class Game extends Application {
             mainPane.getChildren().remove(highScoreboard);
         }
         if(cherryCount!=0){
-            mainPane.getChildren().remove(cherry);
+            mainPane.getChildren().remove(cherryScore);
         }
 
         if(currentScore==0){
