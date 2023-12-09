@@ -1,0 +1,16 @@
+Index: highscore.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>0\r\n41\r\n23\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/highscore.txt b/highscore.txt
+--- a/highscore.txt	(revision 9759d1f48d9f5fd0cbb333e976c3f34ec5811c2b)
++++ b/highscore.txt	(date 1702155099830)
+@@ -1,3 +1,3 @@
+-0
++3
+ 41
+-23
++30
