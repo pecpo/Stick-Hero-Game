@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.media.MediaPlayer;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Random;
 public class Game extends Application {
     private AnchorPane mainPane;
@@ -35,6 +36,8 @@ public class Game extends Application {
     private Scoreboard scoreboard=null;
     private Scoreboard highScoreboard=null;
     private Scoreboard cherryScore=null;
+    private Scoreboard lastScoreboard=null;
+    private Scoreboard totalCherryScore=null;
     private Rectangle stick;
     private Player playerObject;
     private ImageView player;
@@ -46,12 +49,15 @@ public class Game extends Application {
     private static boolean isRotated=false;
     private boolean isAlive=true;
     private boolean cherryCollected=false;
+    private boolean transitioning=false;
     public int getCurrentScore() {
         return currentScore;
     }
     private int currentScore=0;
     private int highScore=0;
     private int cherryCount=0;
+    private int lastScore=0;
+    private int totalCherries=0;
     private double dist;
     private MediaPlayer bgmusicplayer;
     Random random = new Random();
@@ -70,7 +76,7 @@ public class Game extends Application {
             KeyCode keyCode = event.getCode();
             if(!isAlive){
                 if(keyCode==KeyCode.R){
-                    if(cherryCount>=2){
+                    if(cherryCount>1){
                         cherryCount-=2;
                         newcontgame();
                     }
@@ -124,10 +130,14 @@ public class Game extends Application {
     }
 
     private void handleMousePress(MouseEvent event) {
+        if(transitioning){
+            return;
+        }
         System.out.println("press");
         if (isRotated){
             return;
         }
+        transitioning=true;
         isStill=false;
         sh = new Timeline(
                 new KeyFrame(Duration.seconds(2), new KeyValue(stick.heightProperty(), 510))
@@ -139,14 +149,18 @@ public class Game extends Application {
         );
         sy.play();
         isRotated = false;
+        transitioning=false;
     }
 
     private void handleMouseReleased(MouseEvent event) {
+        if(transitioning){
+            return;
+        }
         if (sh != null && sy != null) {
             sh.stop();
             sy.stop();
         }
-
+        transitioning=true;
         if(!isRotated) {
             Rotate rotateTransition = new Rotate();
             rotateTransition.setAngle(90);
@@ -163,10 +177,14 @@ public class Game extends Application {
 
         translateTransition.setOnFinished(event1 -> {
             isStill=true;
+            transitioning=false;
             if (isAlive && stick.getHeight() < platformNext.getX() - platformCurrent.getX() -
                     platformCurrent.getWidth() || stick.getHeight()>platformNext.getX()+platformNext.getWidth() -
                     platformCurrent.getX() - platformCurrent.getWidth()){
                 isAlive=false;
+                bgmusicplayer.stop();
+                MediaPlayer mediaPlayer=new MediaPlayer(new Media(getClass().getResource("collision.mp3").toString()));
+                mediaPlayer.play();
                 try {
                     gameOver();
                 } catch (IOException e) {
@@ -251,7 +269,9 @@ public class Game extends Application {
         try{
             out = new PrintWriter( new
                     FileWriter("highscore.txt"));
-            out.println(highScore);
+            out.println(currentScore);
+            out.println(Math.max(highScore, currentScore));
+            out.println(Math.max(cherryCount, totalCherries));
         }
         finally {
             if(out!=null){
@@ -260,25 +280,19 @@ public class Game extends Application {
         }
     }
 
-    public void serializeGame() throws IOException {
-        ObjectOutputStream out=null;
-        try{
-            out=new ObjectOutputStream(new FileOutputStream("gamefile"));
-            out.writeObject(this);
-        }
-        finally {
-            if(out!=null){
-                out.close();
-            }
-        }
-    }
 
-    public int deserializeHigh() throws IOException, ClassNotFoundException {
+    public ArrayList deserializeHigh() throws IOException, ClassNotFoundException {
             BufferedReader in = null;
             try {
                  in = new BufferedReader( new FileReader("highscore.txt"));
+                 Integer ls= Integer.parseInt(in.readLine());
                  Integer hs= Integer.parseInt(in.readLine());
-                    return hs;
+                 Integer cs= Integer.parseInt(in.readLine());
+                 ArrayList<Integer> arr = new ArrayList<>();
+                    arr.add(ls);
+                    arr.add(hs);
+                    arr.add(cs);
+                    return arr;
             }
 
             finally {
@@ -338,7 +352,6 @@ public class Game extends Application {
 //        mainPane.getChildren().addAll(player);
         Image backgroundImage = new Image("bg1.png");
 
-        // Create a background with the image
         BackgroundImage background = new BackgroundImage(
                 backgroundImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -348,6 +361,12 @@ public class Game extends Application {
         );
         mainPane.setBackground(new Background(background));
 
+        if(lastScoreboard!=null){
+            mainPane.getChildren().remove(lastScoreboard);
+        }
+        if(totalCherryScore!=null){
+            mainPane.getChildren().remove(totalCherryScore);
+        }
         if(scoreboard!=null){
             mainPane.getChildren().remove(scoreboard);
         }
@@ -360,9 +379,17 @@ public class Game extends Application {
 
         if(currentScore==0){
             try {
-                highScore=deserializeHigh();
+                ArrayList<Integer> arr = deserializeHigh();
+                lastScore=arr.get(0);
+                highScore=arr.get(1);
+                totalCherries=Math.max(arr.get(2),cherryCount);
+
+                lastScoreboard = new Scoreboard("LastScore: "+lastScore,"black");
+                totalCherryScore = new Scoreboard("TotalCherries: "+totalCherries,"red");
                 highScoreboard = new Scoreboard("HighScore: "+highScore,"black");
             } catch (Exception e) {
+                lastScoreboard = new Scoreboard("LastScore: "+this.lastScore,"black");
+                totalCherryScore = new Scoreboard("TotalCherries: "+this.totalCherries,"red");
                 highScoreboard = new Scoreboard("HighScore: "+this.highScore,"black");
             }
         }
@@ -372,12 +399,12 @@ public class Game extends Application {
 
         scoreboard = new Scoreboard("Score: "+currentScore,"black");
         cherryScore = new Scoreboard("Cherry: "+cherryCount,"red");
-        pauseButton = new Button("Pause");
 
         mainPane.getChildren().add(scoreboard);
         mainPane.getChildren().add(highScoreboard);
         mainPane.getChildren().add(cherryScore);
-//        mainPane.getChildren().add(pauseButton);
+        mainPane.getChildren().add(lastScoreboard);
+        mainPane.getChildren().add(totalCherryScore);
 
         AnchorPane.setTopAnchor(scoreboard, 10.0);
         AnchorPane.setLeftAnchor(scoreboard, 10.0);
@@ -385,30 +412,14 @@ public class Game extends Application {
         AnchorPane.setTopAnchor(cherryScore, 30.0);
         AnchorPane.setLeftAnchor(cherryScore, 10.0);
 
-        AnchorPane.setTopAnchor(highScoreboard, 50.0);
-        AnchorPane.setLeftAnchor(highScoreboard, 10.0);
+        AnchorPane.setTopAnchor(highScoreboard, 10.0);
+        AnchorPane.setRightAnchor(highScoreboard, 10.0);
 
-        AnchorPane.setTopAnchor(pauseButton, 10.0);
-        AnchorPane.setRightAnchor(pauseButton, 10.0);
+        AnchorPane.setTopAnchor(lastScoreboard, 30.0);
+        AnchorPane.setRightAnchor(lastScoreboard, 10.0);
 
-//        pauseButton.setOnAction(event -> {
-//            try {
-//                serializeGame();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("scene2.fxml"));
-//            Parent root= null;
-//            try {
-//                root = loader.load();
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//            Controller2 pauseController = loader.getController();
-//            Scene scene1 = new Scene(root);
-//            stage.setScene(scene1);
-//            stage.show();
-//        });
+        AnchorPane.setTopAnchor(totalCherryScore, 50.0);
+        AnchorPane.setRightAnchor(totalCherryScore, 10.0);
 
         isFlipped=false;
         isStill=true;
@@ -432,7 +443,7 @@ public class Game extends Application {
             KeyCode keyCode = event.getCode();
             if(!isAlive){
                 if(keyCode==KeyCode.R){
-                    if(cherryCount>2){
+                    if(cherryCount>1){
                         cherryCount-=2;
                         newcontgame();
                     }
@@ -530,6 +541,7 @@ public class Game extends Application {
                         mainPane.getChildren().remove(cherry);
                         System.out.println("Cherry Collision detected!");
                         cherryCount++;
+                        totalCherries++;
                     }
                     // Handle collision logic here
                 }
@@ -539,4 +551,16 @@ public class Game extends Application {
         // Start the AnimationTimer
         timer.start();
     }
+//    public void serializeGame() throws IOException {
+//        ObjectOutputStream out=null;
+//        try{
+//            out=new ObjectOutputStream(new FileOutputStream("gamefile"));
+//            out.writeObject(this);
+//        }
+//        finally {
+//            if(out!=null){
+//                out.close();
+//            }
+//        }
+//    }
 }
