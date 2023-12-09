@@ -357,7 +357,6 @@ public class Game extends Application {
 
         mainPane.getChildren().addAll(platformCurrent, platformNext, stick, player);
 
-//        mainPane.getChildren().addAll(player);
         Image backgroundImage = new Image("bg1.png");
 
         BackgroundImage background = new BackgroundImage(
@@ -403,6 +402,8 @@ public class Game extends Application {
         }
         else{
             highScoreboard = new Scoreboard("HighScore: "+this.highScore,"black");
+            lastScoreboard = new Scoreboard("LastScore: "+lastScore,"black");
+            totalCherryScore = new Scoreboard("TotalCherries: "+totalCherries,"red");
         }
 
         scoreboard = new Scoreboard("Score: "+currentScore,"black");
