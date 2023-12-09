@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="119.0" y="-70.0">com.example.approject.Cherry</node>
+    <node x="193.75" y="191.0">com.example.approject.Player</node>
+    <node x="400.25" y="860.0">com.example.approject.Game</node>
+    <node x="909.75" y="419.0">com.example.approject.Scoreboard</node>
+    <node x="492.75" y="311.0">com.example.approject.GamePlatform</node>
+    <node x="348.0" y="-58.0">com.example.approject.Stick</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.approject.Game" target="com.example.approject.Stick" relationship="CREATE">
+      <point x="0.0" y="-56.0" />
+      <point x="482.25" y="165.0" />
+      <point x="494.25" y="165.0" />
+      <point x="48.75" y="92.5" />
+    </edge>
+    <edge source="com.example.approject.Game" target="com.example.approject.Scoreboard" relationship="CREATE">
+      <point x="0.0" y="-56.0" />
+      <point x="482.25" y="834.0" />
+      <point x="1006.25" y="834.0" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="com.example.approject.Player" target="com.example.approject.Cherry" relationship="TO_MANY">
+      <point x="0.0" y="-308.5" />
+      <point x="332.75" y="165.0" />
+      <point x="275.75" y="165.0" />
+      <point x="52.25" y="104.5" />
+    </edge>
+    <edge source="com.example.approject.Game" target="com.example.approject.Player" relationship="CREATE">
+      <point x="0.0" y="-56.0" />
+      <point x="482.25" y="834.0" />
+      <point x="332.75" y="834.0" />
+      <point x="0.0" y="308.5" />
+    </edge>
+    <edge source="com.example.approject.Game" target="com.example.approject.Cherry" relationship="CREATE">
+      <point x="0.0" y="-56.0" />
+      <point x="482.25" y="834.0" />
+      <point x="183.25" y="834.0" />
+      <point x="183.25" y="165.0" />
+      <point x="171.25" y="165.0" />
+      <point x="-52.25" y="104.5" />
+    </edge>
+    <edge source="com.example.approject.Player" target="com.example.approject.Stick" relationship="TO_ONE">
+      <point x="0.0" y="-308.5" />
+      <point x="332.75" y="165.0" />
+      <point x="396.75" y="165.0" />
+      <point x="-48.75" y="92.5" />
+    </edge>
+    <edge source="com.example.approject.Game" target="com.example.approject.GamePlatform" relationship="CREATE">
+      <point x="0.0" y="-56.0" />
+      <point x="482.25" y="834.0" />
+      <point x="691.25" y="834.0" />
+      <point x="0.0" y="188.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="3.063970590939854" showDependencies="true" x="443.70176682766703" y="260.27635260023453" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
