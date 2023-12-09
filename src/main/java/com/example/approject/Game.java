@@ -214,6 +214,7 @@ public class Game extends Application {
         mainPane=setup();
         mainScene=reScene();
         stage.setScene(mainScene);
+        bgmusicplayer.play();
         stage.show();
     }
 
@@ -244,7 +245,6 @@ public class Game extends Application {
         if(cherry!=null){
             translateTransition5.play();
         }
-
         checkPlatformCollisions();
 
         translateTransition4.setOnFinished(event -> {
@@ -274,6 +274,7 @@ public class Game extends Application {
         mainPane.setBackground(new Background(background));
         serializeHigh(highScore);
         stage.setScene(mainScene);
+        bgmusicplayer.stop();
         stage.show();
     }
 
@@ -537,7 +538,7 @@ public class Game extends Application {
                     }
                     System.out.println("Collision detected!");
                     isAlive = false;
-                    bgmusicplayer.stop();
+
                     MediaPlayer mediaPlayer=new MediaPlayer(new Media(getClass().getResource("collision.mp3").toString()));
                     mediaPlayer.play();
                     try {
