@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="Changes">
+    <list default="true" id="84644a62-b6bf-48f0-b7a6-50b531b1109e" name="Changes" comment="updating">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/GameTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/approject/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/approject/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,9 +106,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GameTest.Test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="APproject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.approject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.approject" />
+      <option name="MAIN_CLASS_NAME" value="com.example.approject.GameTest" />
+      <option name="METHOD_NAME" value="Test3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.GameTest.Test2" />
+        <item itemvalue="JUnit.GameTest.Test3" />
       </list>
     </recent_temporary>
   </component>
@@ -343,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702138003134</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="updating">
+      <option name="closed" value="true" />
+      <created>1702140912138</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1702140912138</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +420,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="Adding new scene" />
     <MESSAGE value="Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+    <MESSAGE value="updating" />
+    <option name="LAST_COMMIT_MESSAGE" value="updating" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
